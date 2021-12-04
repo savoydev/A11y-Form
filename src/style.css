@@ -24,11 +24,6 @@
   line-height: calc(var(--font-size) * 1.5);
   margin-bottom: 1.5rem;
 }
-
-.fieldset__legend::first-letter {
-  text-transform: capitalize;
-}
-
 .input-group {
   display: flex;
   flex-direction: column;

@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Form name="testing">
       <FieldSet>
-        <FieldSet.Legend>identity</FieldSet.Legend>
+        <FieldSet.Legend>Identity</FieldSet.Legend>
         <Input
           name="FirstName"
           id="FirstName"
