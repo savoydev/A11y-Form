@@ -1,7 +1,8 @@
 import React from 'react';
 
-const Button = ({ type, children }) => {
-  return <button type={type}>{children}</button>;
+const Button = (props) => {
+  const { children, ...other } = props;
+  return <button {...other}>{children}</button>;
 };
 
 export default Button;

@@ -19,7 +19,12 @@ export default function App() {
           description="Enter your first name as shown on your ID"
           labelText="First name"
         />
-        <Input name="Another" id="Another" labelText="Last name" />
+        <Input
+          name="Another"
+          required={true}
+          id="Another"
+          labelText="Last name"
+        />
       </FieldSet>
       <Form.Submit>
         <Button>Submit</Button>

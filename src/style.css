@@ -1,8 +1,3 @@
-h1,
-p {
-  font-family: Lato;
-}
-
 :root {
   --font-color: #333;
   --error-color: red;
@@ -29,7 +24,6 @@ p {
   line-height: calc(var(--font-size) * 1.5);
   margin-bottom: 1.5rem;
 }
-
 .input-group {
   display: flex;
   flex-direction: column;
@@ -54,6 +48,11 @@ p {
   border: 1px solid gray;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  outline-offset: 0.25rem;
+}
+
+.input-group input:focus {
+  border-color: gray;
 }
 
 .input-group input:placeholder-shown {
@@ -69,9 +68,8 @@ p {
   color: var(--error-color);
 }
 
-.input-group[data-invalid='true'] input,
-input[aria-invalid='true'],
-.input-group input:invalid {
+input[aria-invalid='true']:not(:focus),
+.input-group input:invalid:not(:focus) {
   border: 2px solid var(--error-color);
 }
 
@@ -99,6 +97,38 @@ input[aria-invalid='true'],
   font-weight: bold;
 }
 
+.form__error-summary {
+  border: 2px solid var(--error-color);
+  padding: 1rem;
+}
+
+.form__error-summary p,
+.form__error-summary ul,
+.form__error-summary li {
+  margin: 0;
+  padding: 0;
+}
+
+.form__error-summary ul {
+  list-style-type: none;
+}
+
+.form__error-summary p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.form__error-summary li {
+  margin-bottom: 0.5rem;
+}
+
+.form__error-summary a {
+  text-decoration: underline;
+  color: var(--error-color);
+  font-weight: bold;
+}
+
 button {
   --bg-color: blue;
   --font-size: 1rem;
@@ -116,4 +146,8 @@ button {
 
 button:hover {
   --bg-color: navy;
+}
+
+button[aria-disabled='true'] {
+  --bg-color: lightblue;
 }
