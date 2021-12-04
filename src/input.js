@@ -48,7 +48,7 @@ const Input = ({
   function onBlur({ target }) {
     const buttonHover = document.querySelector('button[type="submit"]:hover');
     if (buttonHover) return;
-    //validateInput(target);
+    validateInput(target);
   }
 
   function onInput({ target, type }) {
