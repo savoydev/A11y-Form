@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Form name="testing">
       <FieldSet>
-        <FieldSet.Legend>Identity</FieldSet.Legend>
+        <FieldSet.Legend>identity</FieldSet.Legend>
         <Input
           name="FirstName"
           id="FirstName"
@@ -19,7 +19,12 @@ export default function App() {
           description="Enter your first name as shown on your ID"
           labelText="First name"
         />
-        <Input name="Another" id="Another" labelText="Last name" />
+        <Input
+          name="Another"
+          required={true}
+          id="Another"
+          labelText="Last name"
+        />
       </FieldSet>
       <Form.Submit>
         <Button>Submit</Button>

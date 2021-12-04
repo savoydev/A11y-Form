@@ -1,59 +1,86 @@
 import React, { useEffect, useState } from 'react';
 import { validateInput } from './validation';
-import FormError from './formerror';
+import FormErrorSummary from './formerrorsummary';
 
 const Form = ({ children, name }) => {
   let [inputErrors, setInputErrors] = useState([]);
+  let [formData, setFormData] = useState({});
+
   useEffect(() => {
-    console.log('CHANGED');
-  }, [inputErrors]);
+    console.log(formData);
+  }, [formData]);
 
   function submitMethod(e) {
     e.preventDefault();
-    console.log('submit');
     const form = e.target;
+    if (form.dataset.submitting == 'true') {
+      return;
+    }
 
-    const inputsOnly = Array.from(form.elements).filter(
-      (element) =>
-        element.tagName !== 'BUTTON' && element.tagName !== 'FIELDSET'
-    );
-    inputsOnly.map((element) => {
-      validateInput(element);
-      console.log('element is valid', element.validity.valid);
-      if (!element.validity.valid) {
-        inputErrors.push({
-          inputId: element.id,
-          errorMessage: element.validationMessage,
-        });
-      }
-      console.log(element.validationMessage);
-    });
+    form.dataset.submitting = 'true';
+    const buttonState = toggleButtonState(e.nativeEvent.submitter);
+    buttonState.toggleState();
+    setInputErrors(errors(invalidInputs(form)));
     if (e.target.checkValidity()) {
-      console.log(getFormData(new FormData(form)));
-    } else {
-      console.log('form is not valid');
-      console.log(inputErrors);
-      setInputErrors(inputErrors);
+      setFormData(formDataAsObj(new FormData(form)));
     }
-  }
-
-  function getFormData(formData) {
-    let formValues = {};
-    for (var value of formData.entries()) {
-      formValues[`${value[0]}`] = value[1];
-    }
-    return formValues;
+    delete form.dataset.submitting;
+    buttonState.toggleState();
   }
   return (
     <form name={name} noValidate onSubmit={submitMethod}>
-      <FormError errors={inputErrors} />
+      <FormErrorSummary errors={inputErrors} />
       {children}
     </form>
   );
 };
 
+function formDataAsObj(formData) {
+  return Object.fromEntries(formData.entries());
+}
+
+function errors(inputElements) {
+  return inputElements.map((element) => {
+    return {
+      inputId: element.id,
+      errorMessage: element.validationMessage,
+    };
+  });
+}
+
+function invalidInputs(form) {
+  return Array.from(form.elements).filter((element) => {
+    if (element.tagName.match(/INPUT|SELECT|TEXTAREA|\\./g)) {
+      validateInput(element);
+      if (!element.validity.valid) {
+        return element;
+      }
+    }
+  });
+}
+
+function toggleButtonState(button) {
+  const buttonText = button.innerHTML;
+  const submittingText = 'Submitting';
+  const toggleState = () => {
+    if (button.form.dataset.submitting == 'true') {
+      button.innerHTML = submittingText;
+      button.setAttribute('aria-disabled', 'true');
+    } else {
+      button.innerHTML = buttonText;
+      button.removeAttribute('aria-disabled');
+    }
+  };
+  return {
+    toggleState,
+  };
+}
+
 const Submit = ({ children }) => {
-  const props = { ...children.props, type: 'submit' };
+  const props = {
+    ...children.props,
+    type: 'submit',
+  };
   return React.cloneElement(children, { ...props });
 };
 
