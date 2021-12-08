@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import Form from './form';
 import Input from './input';
-import FieldSet from './fieldset';
+import FieldSet from './components/fieldset/fieldset';
 import Button from './components/button/button';
 
 export default function App() {
