@@ -3,7 +3,7 @@ import './style.css';
 import Form from './form';
 import Input from './input';
 import FieldSet from './fieldset';
-import Button from './button';
+import Button from './components/button/button';
 
 export default function App() {
   return (
