@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { validateInput } from '../../validation';
-import FormErrorSummary from '../../formerrorsummary';
+import FormErrorSummary from '../formerrorsummary/formerrorsummary';
 
 const Form = ({ children, name }) => {
   let [inputErrors, setInputErrors] = useState([]);
