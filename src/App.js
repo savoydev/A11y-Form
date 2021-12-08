@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import Form from './components/form/form';
-import Input from './input';
+import Input from './components/input/input';
 import FieldSet from './components/fieldset/fieldset';
 import Button from './components/button/button';
 

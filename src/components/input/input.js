@@ -4,7 +4,7 @@ import {
   INPUT_TYPES,
   validateInput,
   setInvalid,
-} from './validation';
+} from '.../../validation';
 
 const Input = ({
   invalid = false,
