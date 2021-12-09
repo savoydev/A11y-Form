@@ -6,6 +6,10 @@ import {
   setInvalid,
   isDisabled
 } from '../../validation';
+import InputGroup from './group/input-group'
+import InputDescription from './description/input-description'
+import InputError from './error/input-error'
+import InputLabel from './label/input-label'
 
 const Input = ({
   invalid = null,
@@ -61,9 +65,9 @@ const Input = ({
 
   return (
     <InputGroup inputId={id} invalid={invalid} required={required} disabled={disabled}>
-      <Label id={computedLabelId} htmlFor={id} disabled={disabled}>
+      <InputLabel id={computedLabelId} htmlFor={id} disabled={disabled}>
         {labelText}
-      </Label>
+      </InputLabel>
       {description && (
         <InputDescription id={ariaDescribedById}>
           {description}
@@ -96,45 +100,13 @@ const Input = ({
   );
 };
 
-const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
-  return (
-    <div
-      className="input-group"
-      data-invalid={invalid}
-      data-input-id={inputId}
-      data-required={required}
-      data-disabled={disabled}
-    >
-      {children}
-    </div>
-  );
-};
 
-const Label = ({ id, disabled = false, children, htmlFor }) => {
-  return (
-    <label id={id} htmlFor={htmlFor} disabled={disabled}>
-      {children}
-    </label>
-  );
-};
 
-const InputDescription = ({ children, id }) => {
-  return (
-    <span className="description" id={id}>
-      {children}
-    </span>
-  );
-};
 
-const InputError = ({ children, id }) => {
-  return (
-    <span className="error-message" id={id}>
-      {children}
-    </span>
-  );
-};
 
-Input.Label = Label;
+
+
+Input.Label = InputLabel;
 Input.Description = InputDescription;
 Input.Error = InputError;
 

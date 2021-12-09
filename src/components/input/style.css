@@ -1,10 +1,6 @@
 @import './group/style.css';
 @import './label/style.css';
+@import './description/style.css';
 @import './base/style.css';
 @import './error-state/style.css';
 @import './disabled-state/style.css';
-
-.description {
-  color: #757575;
-  line-height: 1.5rem;
-}

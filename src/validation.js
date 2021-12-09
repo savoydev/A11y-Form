@@ -62,6 +62,10 @@ const INPUT_ATTR = {
   AUTOCOMPLETE: 'autoComplete',
   SPELLCHECK: 'spellCheck',
   PLACEHOLDER: 'placeholder',
+  TYPE: 'type',
+  NAME: 'name',
+  READONLY: 'readOnly',
+  ID: 'id',
 };
 
 const DATA_ATTR = {
@@ -69,6 +73,7 @@ const DATA_ATTR = {
   INVALID: 'data-invalid',
   REQUIRED: 'data-required',
   MAXLENGTH: 'data-maxlength',
+  DISABLED: 'data-disabled',
 };
 
 const EVENT_TYPES = {
@@ -82,8 +87,10 @@ export const INPUT_TYPES = {
   EMAIL: 'email',
 };
 
-const TRUE = 'true';
-const FALSE = 'false';
+const ATTR_BOOL = {
+  TRUE: 'true',
+  FALSE: 'false'
+}
 
 const autoComplete = {
   on: 'on',
@@ -142,9 +149,9 @@ function inputLengths(element) {
 
 export function setInvalid(target) {
   const element = extend(target);
-  element.setAttribute(ARIA_ATTR.INVALID, TRUE);
+  element.setAttribute(ARIA_ATTR.INVALID, ATTR_BOOL.TRUE);
   element.errorMessageElement.innerText = element.validationMessage;
-  element.inputGroup.dataset.invalid = TRUE;
+  element.inputGroup.dataset.invalid = ATTR_BOOL.TRUE;
 }
 
 const errorMessages = {
@@ -157,7 +164,7 @@ const errorMessages = {
 export function extend(element) {
   const labelText = element.labels.item(0).innerText;
   const lengths = inputLengths(element);
-  const required = element.getAttribute(ARIA_ATTR.REQUIRED) === TRUE;
+  const required = element.getAttribute(ARIA_ATTR.REQUIRED) === ATTR_BOOL.TRUE;
   const trueValue = element.value,
   const value = element.value.trim();
   const valueMissing = required && value === '';
@@ -215,7 +222,7 @@ export function validateInput(element) {
 }
 
 function clearInvalidAttributes(element) {
-  element.setAttribute(ARIA_ATTR.INVALID, FALSE);
+  element.setAttribute(ARIA_ATTR.INVALID, ATTR_BOOL.FALSE);
   const inputGroup = document.querySelector(
     `[${DATA_ATTR.INPUT_ID}='${element.id}']`
   );
@@ -223,11 +230,11 @@ function clearInvalidAttributes(element) {
     element.getAttribute(ARIA_ATTR.ERRORMESSAGE)
   );
   errorMessage.innerText = '';
-  inputGroup.dataset.invalid = FALSE;
+  inputGroup.dataset.invalid = ATTR_BOOL.FALSE;
 }
 
 
 export function isDisabled(element) {
   const isDisabled = element.getAttribute('aria-disabled');
-  return isDisabled === 'true'
+  return isDisabled === ATTR_BOOL.TRUE
 }
