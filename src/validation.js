@@ -151,10 +151,8 @@ function inputLengths(element) {
 }
 
 export function setInvalid(target) {
-  console.log('INVALID',target.id)
   const element = extend(target);
   element.setAttribute(ARIA_ATTR.INVALID, ATTR_BOOL.TRUE);
-  console.log('ERROR ELEMENT', element.errorMessageElement)
   element.errorMessageElement.innerText = element.validationMessage;
   element.inputGroup.dataset.invalid = ATTR_BOOL.TRUE;
 }
@@ -167,7 +165,7 @@ const errorMessages = {
 };
 
 export function extend(element) {
-  console.log(`${element.id}`, element.labels)
+  
   const labelText = element.labels.item(0).innerText;
   const lengths = inputLengths(element);
   const required = element.getAttribute(ARIA_ATTR.REQUIRED) === ATTR_BOOL.TRUE;
