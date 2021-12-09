@@ -1,0 +1,17 @@
+.input-group input {
+  border: 1px solid gray;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.input-group input:focus {
+  border-color: gray;
+}
+
+.input-group input:placeholder-shown {
+  text-overflow: ellipsis;
+}
+
+.input-group input::placeholder {
+  color: #757575;
+}
