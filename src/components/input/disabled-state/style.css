@@ -1,0 +1,14 @@
+.input-group[data-disabled='true'] *,
+.input-group[data-disabled='true'] label {
+  color: #757575;
+}
+.input-group[data-disabled='true'] .error-message {
+  display: none;
+}
+
+input[aria-disabled='true'] {
+  background: lightgray;
+  border-color: lightgray;
+  user-select: none;
+  pointer-events: none;
+}

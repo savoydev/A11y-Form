@@ -1,7 +1,8 @@
 @import './group/style.css';
 @import './label/style.css';
 @import './base/style.css';
-@import './error/style.css';
+@import './error-state/style.css';
+@import './disabled-state/style.css';
 
 .description {
   color: #757575;
@@ -11,17 +12,6 @@
 .input-group[data-required='true'] label::after {
   content: ' *';
   color: var(--error-color);
-}
-
-.input-group[data-disabled='true'] *,
-.input-group[data-disabled='true'] label {
-  color: #757575;
-  user-select: none;
-  pointer-events: none;
-  border-color: gray;
-}
-.input-group[disabled] .error-message {
-  display: none;
 }
 
 .input-group[data-invalid='true'] .error-message {

@@ -61,7 +61,7 @@ const Input = ({
 
   console.log(disabled)
   return (
-    <InputGroup inputId={id} invalid={invalid} required={required} data-disabled={disabled}>
+    <InputGroup inputId={id} invalid={invalid} required={required} disabled={disabled}>
       <Label id={computedLabelId} htmlFor={id} disabled={disabled}>
         {labelText}
       </Label>
@@ -103,7 +103,7 @@ const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
       data-invalid={invalid}
       data-input-id={inputId}
       data-required={required}
-      data-disable={disabled}
+      data-disabled={disabled}
     >
       {children}
     </div>
