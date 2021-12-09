@@ -4,6 +4,7 @@ import {
   INPUT_TYPES,
   validateInput,
   setInvalid,
+  isDisabled
 } from '../../validation';
 
 const Input = ({
@@ -52,11 +53,15 @@ const Input = ({
   }
 
   function onInput({ target, type }) {
+    if(isDisabled) {
+      target.value = '';
+    }
     return;
   }
 
+  console.log(disabled)
   return (
-    <InputGroup inputId={id} invalid={invalid} required={required}>
+    <InputGroup inputId={id} invalid={invalid} required={required} data-disabled={disabled}>
       <Label id={computedLabelId} htmlFor={id} disabled={disabled}>
         {labelText}
       </Label>
@@ -91,13 +96,14 @@ const Input = ({
   );
 };
 
-const InputGroup = ({ children, invalid, inputId, required }) => {
+const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
   return (
     <div
       className="input-group"
       data-invalid={invalid}
       data-input-id={inputId}
       data-required={required}
+      data-disable={disabled}
     >
       {children}
     </div>

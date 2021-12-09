@@ -193,6 +193,7 @@ export function extend(element) {
 }
 
 export function validateInput(element) {
+  if(isDisabled(element)) return;
   element = extend(element);
   if (element.valueMissing) {
     element.setCustomValidity(errorMessages.required(element));
@@ -223,4 +224,10 @@ function clearInvalidAttributes(element) {
   );
   errorMessage.innerText = '';
   inputGroup.dataset.invalid = FALSE;
+}
+
+
+export function isDisabled(element) {
+  const isDisabled = element.getAttribute('aria-disabled');
+  return isDisabled === 'true'
 }

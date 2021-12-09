@@ -1,0 +1,65 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  line-height: 1.5rem;
+}
+
+.description {
+  color: #757575;
+  line-height: 1.5rem;
+}
+
+.input-group input {
+  border: 1px solid gray;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.input-group input:focus {
+  border-color: gray;
+}
+
+.input-group input:placeholder-shown {
+  text-overflow: ellipsis;
+}
+
+.input-group input::placeholder {
+  color: #757575;
+}
+
+.input-group[data-required='true'] label::after {
+  content: ' *';
+  color: var(--error-color);
+}
+
+input[aria-invalid='true']:not(:focus),
+.input-group input:invalid:not(:focus) {
+  border: 2px solid var(--error-color);
+}
+
+.input-group[data-invalid='true'] .error-message {
+  display: block;
+}
+
+.input-group[data-disabled='true'] *,
+.input-group[data-disabled='true'] label {
+  color: #757575;
+  user-select: none;
+  pointer-events: none;
+  border-color: gray;
+}
+.input-group[disabled] .error-message {
+  display: none;
+}
+
+.error-message {
+  display: none;
+  color: var(--error-color);
+  line-height: 1.5rem;
+  font-weight: bold;
+}

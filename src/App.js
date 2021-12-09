@@ -18,6 +18,7 @@ export default function App() {
           maxLength="10"
           description="Enter your first name as shown on your ID"
           labelText="First name"
+          disabled={true}
         />
         <Input
           name="Another"
