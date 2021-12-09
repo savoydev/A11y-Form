@@ -22,6 +22,7 @@ const Input = ({
   dataType,
   autoComplete = 'off',
   spellCheck = false,
+  errorMessageId
 }) => {
   const ariaErrorMessageId = `${id}ErrorMsg`;
   const ariaDescribedById = description != null ? `${id}DescribedBy` : null;
@@ -72,7 +73,7 @@ const Input = ({
       aria-invalid={invalid}
       aria-disabled={disabled}
       aria-labelledby={computedLabelId}
-      aria-errormessage={ariaErrorMessageId}
+      aria-errormessage={errorMessageId}
       aria-describedby={ariaDescribedById}
       onInput={onInput}
       onBlur={onBlur}

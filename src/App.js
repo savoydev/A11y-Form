@@ -7,6 +7,7 @@ import InputLabel from './components/input/label/input-label';
 import InputDescription from './components/input/description/input-description';
 import FieldSet from './components/fieldset/fieldset';
 import Button from './components/button/button';
+import AutoInput from './components/input/auto-input';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
             maxLength={5}
             name="Nickname"
             aria-labelledby="NicknameLabel"
+            errorMessageId="NicknameErrorMsg"
           />
         </InputGroup>
         <InputGroup inputId="FirstName">
@@ -48,19 +50,15 @@ export default function App() {
             name="FirstName"
             required={true}
             maxLength="10"
+            errorMessageId="FirstNameErrorMsg"
           />
         </InputGroup>
-        <InputGroup>
-          <InputLabel>Middle Name</InputLabel>
-          <InputDescription>
-            Your middle name is between your first and last name
-          </InputDescription>
-        </InputGroup>
-        <Input
-          name="Another"
+        <AutoInput
+          id="LastName"
           required={true}
-          id="Another"
-          labelText="Last name"
+          group={{ required: true }}
+          label={{ text: 'Last Name' }}
+          input={{ name: 'LastName' }}
         />
       </FieldSet>
       <Form.Submit>

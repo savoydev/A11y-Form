@@ -1,4 +1,4 @@
-.description {
+.description, .description * {
   color: #757575;
   line-height: 1.5rem;
 }
