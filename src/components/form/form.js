@@ -16,7 +16,6 @@ const Form = ({ children, name }) => {
     if (form.dataset.submitting == 'true') {
       return;
     }
-
     form.dataset.submitting = 'true';
     const buttonState = toggleButtonState(e.nativeEvent.submitter);
     buttonState.toggleState();

@@ -144,6 +144,9 @@ function inputLengths(element) {
     hasMinAndMax: () => {
       return max !== null && min !== null;
     },
+    lessThanMinLength: () => {
+      return min === null ? false : value < min;
+    }
   };
 }
 
@@ -202,14 +205,16 @@ export function extend(element) {
 export function validateInput(element) {
   if(isDisabled(element)) return;
   element = extend(element);
+  console.log(`${element.id}`);
+  console.log(element.lengths.hasMinAndMax())
   if (element.valueMissing) {
     element.setCustomValidity(errorMessages.required(element));
   } else if (
     element.lengths.hasMinAndMax() &&
-    (element.validity.tooShort || element.lengths.exceededMaxLength())
+    (element.validity.tooShort || element.lengths.lessThanMinLength() || element.lengths.exceededMaxLength())
   ) {
     element.setCustomValidity(errorMessages.tooLongOrShort(element));
-  } else if (element.validity.tooShort) {
+  } else if (element.validity.tooShort || element.lengths.lessThanMinLength()) {
     element.setCustomValidity(errorMessages.tooShort(element));
   } else if (element.lengths.exceededMaxLength()) {
     element.setCustomValidity(errorMessages.tooLong(element));

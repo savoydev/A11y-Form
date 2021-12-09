@@ -1,11 +1,8 @@
 import React from 'react';
 import InputLabel from '../label/input-label';
 import InputDescription from '../description/input-description';
+import InputError from '../error/input-error';
 import BaseInput from '../base/base-input.js'
-
-const AutoLabel = children => {
-
-}
 
 const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
 
@@ -24,5 +21,6 @@ const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
 
 InputGroup.Label = InputLabel;
 InputGroup.Description = InputDescription;
+InputGroup.Error = InputError
 InputGroup.Input = BaseInput;
 export default InputGroup;

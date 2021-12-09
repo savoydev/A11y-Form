@@ -14,21 +14,42 @@ export default function App() {
       <FieldSet>
         <FieldSet.Legend>Identity</FieldSet.Legend>
         <InputGroup inputId="Nickname">
-          <InputGroup.Label id="NicknameLabel">Nickname</InputGroup.Label>
+          <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
+            Nickname
+          </InputGroup.Label>
           <InputGroup.Description>
             A nickname could be something your friends call you
           </InputGroup.Description>
+          <InputGroup.Error id="NicknameErrorMsg" />
+          <InputGroup.Input
+            id="Nickname"
+            placeholder="Nickname"
+            type="text"
+            minLength={2}
+            maxLength={5}
+            name="Nickname"
+            aria-labelledby="NicknameLabel"
+          />
         </InputGroup>
-        <Input
-          name="FirstName"
-          id="FirstName"
-          required={true}
-          // minLength="5"
-          maxLength="10"
-          description="Enter your first name as shown on your ID"
-          labelText="First name"
-          disabled={true}
-        />
+        <InputGroup inputId="FirstName">
+          <InputGroup.Label
+            id="FirstNameLabel"
+            htmlFor="FirstName"
+            required={true}
+          >
+            First Name
+          </InputGroup.Label>
+          <InputGroup.Description>
+            Enter your first name as shown as your ID
+          </InputGroup.Description>
+          <InputGroup.Error id="FirstNameErrorMsg" />
+          <InputGroup.Input
+            id="FirstName"
+            name="FirstName"
+            required={true}
+            maxLength="10"
+          />
+        </InputGroup>
         <InputGroup>
           <InputLabel>Middle Name</InputLabel>
           <InputDescription>
