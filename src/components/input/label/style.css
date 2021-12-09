@@ -1,3 +1,8 @@
 .input-group label {
   line-height: 1.5rem;
 }
+
+.input-group[data-required='true'] label::after {
+  content: ' *';
+  color: var(--error-color);
+}

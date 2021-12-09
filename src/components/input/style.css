@@ -8,16 +8,3 @@
   color: #757575;
   line-height: 1.5rem;
 }
-
-.input-group[data-required='true'] label::after {
-  content: ' *';
-  color: var(--error-color);
-}
-
-.input-group[data-invalid='true'] .error-message {
-  display: block;
-}
-
-.input-group input:invalid:not(:focus) {
-  border: 2px solid var(--error-color);
-}

@@ -8,9 +8,9 @@ import {
 } from '../../validation';
 
 const Input = ({
-  invalid = false,
-  required = false,
-  disabled = false,
+  invalid = null,
+  required = null,
+  disabled = null,
   labelId,
   labelText,
   id,
@@ -53,13 +53,12 @@ const Input = ({
   }
 
   function onInput({ target, type }) {
-    if(isDisabled) {
+    if(isDisabled(target)) {
       target.value = '';
     }
     return;
   }
 
-  console.log(disabled)
   return (
     <InputGroup inputId={id} invalid={invalid} required={required} disabled={disabled}>
       <Label id={computedLabelId} htmlFor={id} disabled={disabled}>
@@ -91,6 +90,7 @@ const Input = ({
         onBlur={onBlur}
         onInvalid={onInvalid}
         {...dataType}
+        readOnly={disabled}
       />
     </InputGroup>
   );
