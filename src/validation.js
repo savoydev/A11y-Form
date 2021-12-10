@@ -58,6 +58,7 @@ export const ARIA_ATTR = {
   ERRORMESSAGE: 'aria-errormessage',
   LABELLEDBY: 'aria-labelledby',
   REQUIRED: 'aria-required',
+  DISABLED: 'aria-disabled'
 };
 
 const INPUT_ATTR = {
@@ -158,7 +159,7 @@ function inputLengths(element) {
 export function setInvalid(target) {
   const element = extend(target);
   element.setAttribute(ARIA_ATTR.INVALID, ATTR_BOOL.TRUE);
-  element.errorMessageElement.innerText = element.validationMessage;
+  element.setErrorMessageContentToValidationMessage();
   element.inputGroup.dataset.invalid = ATTR_BOOL.TRUE;
 }
 
@@ -168,6 +169,10 @@ const errorMessages = {
   tooShort: (inputElement) => createTooShortText(inputElement),
   tooLong: (inputElement) => createTooLongText(inputElement),
 };
+
+export function isDisabled(element) {
+  return element.getAttribute(ARIA_ATTR.DISABLED) === ATTR_BOOL.TRUE
+}
 
 export function extend(element) {
   
@@ -181,47 +186,110 @@ export function extend(element) {
   const inputGroup = document.querySelector(
     `[${DATA_ATTR.INPUT_ID}='${element.id}']`
   );
-  return {
-    element,
-    id: element.id,
-    tagName: element.tagName,
-    validity: element.validity,
-    dataset: element.dataset,
-    labels: element.labels,
-    validationMessage: element.validationMessage,
+  const disabled = isDisabled(element);
+  let extendedElement = {
     attributes: element.getAttributeNames(),
-    labelText,
-    required,
-    trueValue,
-    inputGroup,
+    dataset: element.dataset,
+    element,
     errorMessageElement,
-    value,
+    id: element.id,
+    inputGroup,
+    disabled,
+    labels: element.labels,
+    labelText,
     lengths,
+    required,
+    tagName: element.tagName,
+    trueValue,
+    validity: element.validity,
+    validationMessage: element.validationMessage,
+    value,
     valueMissing,
-    clearValidationMessage: () => element.setCustomValidity(''),
-    getAttribute: (attribute) => element.getAttribute(attribute),
-    setCustomValidity: (message) => element.setCustomValidity(message),
-    checkValidity: () => element.checkValidity(),
-    setAttribute: (attribute, value) =>
-      element.setAttribute(attribute, value),
-    clearInvalidAttributes: () => clearInvalidAttributes(element)
   };
+
+  extendedElement.clearInvalidAttributes = function() {
+    element.setAttribute(ARIA_ATTR.INVALID, ATTR_BOOL.FALSE);
+    this.clearErrorMessageContent();
+    this.inputGroup.dataset.invalid = ATTR_BOOL.FALSE;
+  }
+
+  extendedElement.clearValidationMessage = function() {
+    this.element.setCustomValidity('')
+  }
+
+  extendedElement.getAttribute = function(attribute) {
+    return this.element.getAttribute(attribute)
+  }
+
+  extendedElement.setCustomValidity = function(message) {
+    return this.element.setCustomValidity(message)
+  }
+
+  extendedElement.checkValidity = function() {
+    return this.element.checkValidity();
+  }
+
+  extendedElement.setAttribute = function(attribute, value) {
+    this.element.setAttribute(attribute, value)
+  }
+
+  extendedElement.hasMinAndMax = function() {
+    return this.lengths.hasMinAndMax();
+  }
+
+  extendedElement.lessThanMinLength = function() {
+    return this.lengths.lessThanMinLength();
+  }
+
+  extendedElement.exceededMaxLength = function() {
+    return this.lengths.exceededMaxLength();
+  }
+
+  extendedElement.setRequiredError = function() {
+    this.setCustomValidity(errorMessages.required(this))
+  }
+
+  extendedElement.setTooLongOrShortError = function() {
+    this.setCustomValidity(errorMessages.tooLongOrShort(this));
+  }
+
+  extendedElement.setTooShortError = function() {
+    this.setCustomValidity(errorMessages.tooShort(this));
+  }
+
+  extendedElement.setTooLongError = function() {
+    this.setCustomValidity(errorMessages.tooLong(this));
+  }
+
+  extendedElement.setErrorMessageContent = function(message) {
+    this.errorMessageElement.innerText = message;
+  }
+
+  extendedElement.clearErrorMessageContent = function() {
+    this.setErrorMessageContent('')
+  }
+
+  extendedElement.setErrorMessageContentToValidationMessage = function() {
+    this.setErrorMessageContent(this.validationMessage)
+  }
+
+  return extendedElement;
 }
 
 export function validateInput(element) {
-  if(isDisabled(element)) return;
   element = extend(element);
+  if(element.disabled) return;
   if (element.valueMissing) {
-    element.setCustomValidity(errorMessages.required(element));
+    element.setRequiredError();
   } else if (
-    element.lengths.hasMinAndMax() &&
-    (element.validity.tooShort || element.lengths.lessThanMinLength() || element.lengths.exceededMaxLength())
+    element.hasMinAndMax() &&
+    (element.validity.tooShort || element.lessThanMinLength() || element.exceededMaxLength())
   ) {
-    element.setCustomValidity(errorMessages.tooLongOrShort(element));
-  } else if (element.validity.tooShort || element.lengths.lessThanMinLength()) {
-    element.setCustomValidity(errorMessages.tooShort(element));
-  } else if (element.lengths.exceededMaxLength()) {
-    element.setCustomValidity(errorMessages.tooLong(element));
+    element.setTooLongOrShortError();
+  } else if (element.validity.tooShort || element.lessThanMinLength()) {
+    element.setTooShortError();
+  } else if (element.exceededMaxLength()) {
+    element.setTooLongError();
   } else {
     element.clearValidationMessage();
   }
@@ -230,20 +298,4 @@ export function validateInput(element) {
   }
 }
 
-function clearInvalidAttributes(element) {
-  element.setAttribute(ARIA_ATTR.INVALID, ATTR_BOOL.FALSE);
-  const inputGroup = document.querySelector(
-    `[${DATA_ATTR.INPUT_ID}='${element.id}']`
-  );
-  const errorMessage = document.getElementById(
-    element.getAttribute(ARIA_ATTR.ERRORMESSAGE)
-  );
-  errorMessage.innerText = '';
-  inputGroup.dataset.invalid = ATTR_BOOL.FALSE;
-}
 
-
-export function isDisabled(element) {
-  const isDisabled = element.getAttribute('aria-disabled');
-  return isDisabled === ATTR_BOOL.TRUE
-}

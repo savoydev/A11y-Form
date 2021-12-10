@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import {
   ARIA_ATTR,
+  AUTO_SUFFIX,
   INPUT_TYPES,
   validateInput,
   setInvalid,
@@ -24,9 +25,8 @@ const Input = ({
   spellCheck = false,
   errorMessageId,
 }) => {
-  const ariaErrorMessageId = `${id}ErrorMsg`;
   const ariaDescribedById = description != null ? `${id}DescribedBy` : null;
-  const computedLabelId = labelId ?? `${id}Label`;
+  const computedLabelId = labelId ?? `${id}${AUTO_SUFFIX.LABEL}`;
   const textInput = useRef(null);
 
   // useEffect(() => {
