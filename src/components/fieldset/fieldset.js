@@ -10,11 +10,11 @@ const fieldSetHasLegend = (children) => {
   return fieldSetHasLegend;
 };
 
-const FieldSet = ({ children, legend, name }) => {
+const FieldSet = ({ children, legend, name, id }) => {
   fieldSetHasLegend(children);
   return (
-    <fieldset name={name ?? legend} className="form__fieldset fieldset">
-      {!fieldSetHasLegend(children) && <Legend>{legend ?? name}</Legend>}
+    <fieldset id={id} name={name} className="form__fieldset fieldset">
+      {!fieldSetHasLegend(children) && <Legend>{legend}</Legend>}
       {children}
     </fieldset>
   );
