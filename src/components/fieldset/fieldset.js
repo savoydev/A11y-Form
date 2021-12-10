@@ -1,7 +1,23 @@
 import React from 'react';
 
-const FieldSet = ({ children }) => {
-  return <fieldset className="form__fieldset fieldset">{children}</fieldset>;
+const fieldSetHasLegend = (children) => {
+  let fieldSetHasLegend = false;
+  children.forEach((child) => {
+    if (child.type === Legend) {
+      fieldSetHasLegend = true;
+    }
+  });
+  return fieldSetHasLegend;
+};
+
+const FieldSet = ({ children, legend, name }) => {
+  fieldSetHasLegend(children);
+  return (
+    <fieldset name={name ?? legend} className="form__fieldset fieldset">
+      {!fieldSetHasLegend(children) && <Legend>{legend ?? name}</Legend>}
+      {children}
+    </fieldset>
+  );
 };
 
 const Legend = ({ children }) => {

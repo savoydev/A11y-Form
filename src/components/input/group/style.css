@@ -2,5 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.form__fieldset .input-group:not(:last-of-type) {
   margin-bottom: 1.5rem;
 }

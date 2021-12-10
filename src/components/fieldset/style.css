@@ -10,3 +10,7 @@
   line-height: 1.5rem;
   margin-bottom: 1.5rem;
 }
+
+.form__fieldset:not(:last-of-type) {
+  margin-bottom: 2rem;
+}

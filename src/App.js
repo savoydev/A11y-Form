@@ -9,8 +9,7 @@ import AutoInput from './components/input/auto-input';
 export default function App() {
   return (
     <Form name="testing">
-      <FieldSet>
-        <FieldSet.Legend>Identity</FieldSet.Legend>
+      <FieldSet name="Identity">
         <InputGroup inputId="Nickname">
           <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
             Nickname
