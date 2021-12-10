@@ -49,13 +49,7 @@ export default function App() {
             errorMessageId="FirstNameErrorMsg"
           />
         </InputGroup>
-        <AutoInput
-          id="LastName"
-          required={true}
-          group={{ required: true }}
-          label={{ text: 'Last Name' }}
-          input={{ name: 'LastName' }}
-        />
+        <AutoInput id="LastName" labelText="Your Last Name" />
       </FieldSet>
       <Form.Submit>
         <Button>Submit</Button>

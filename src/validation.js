@@ -28,6 +28,11 @@ const datatype = {
   pattern: '',
 };
 
+export const AUTO_SUFFIX = {
+  LABEL: 'Label',
+  ERROR_MSG: 'ErrorMsg'
+}
+
 const dataTypes = {
   wholeNumber: {
     pattern: '[0-9]*',
