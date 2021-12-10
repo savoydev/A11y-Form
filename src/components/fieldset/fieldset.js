@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FieldSet = ({ children }) => {
-  return <fieldset className="fieldset">{children}</fieldset>;
+  return <fieldset className="form__fieldset fieldset">{children}</fieldset>;
 };
 
 const Legend = ({ children }) => {

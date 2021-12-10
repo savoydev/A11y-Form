@@ -3,11 +3,11 @@
 .input-group[data-disabled='true'] label::after {
   color: #757575;
 }
-.input-group[data-disabled='true'] .error-message {
+.input-group[data-disabled='true'] .input-group__error-message {
   display: none;
 }
 
-input[aria-disabled='true'] {
+.input-group__input[aria-disabled='true'] {
   background: lightgray;
   border-color: lightgray;
   user-select: none;

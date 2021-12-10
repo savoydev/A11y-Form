@@ -1,11 +1,11 @@
-.error-message {
+.input-group__error-message {
   display: none;
   color: var(--error-color);
   line-height: 1.5rem;
   font-weight: bold;
 }
 
-.input-group[data-invalid='true'] .error-message {
+.input-group[data-invalid='true'] .input-group__error-message {
   display: block;
 }
 

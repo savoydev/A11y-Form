@@ -27,7 +27,7 @@ const Form = ({ children, name }) => {
     buttonState.toggleState();
   }
   return (
-    <form name={name} noValidate onSubmit={submitMethod}>
+    <form name={name} noValidate onSubmit={submitMethod} className="form">
       <FormErrorSummary errors={inputErrors} />
       {children}
     </form>

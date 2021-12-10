@@ -2,12 +2,12 @@ import React from 'react';
 
 const FormErrorSummary = ({ errors }) => {
   return errors.length > 0 ? (
-    <div className="form__error-summary">
-      <p>There is a problem</p>
-      <ul>
+    <div className="form__error-summary error-summary">
+      <p className="error-summary__heading">There is a problem</p>
+      <ul className="error-summary__error-list error-list">
         {errors.map((error) => {
           return (
-            <li key={error.inputId}>
+            <li className="error-list__item" key={error.inputId}>
               <a href={`#${error.inputId}`}>{error.errorMessage}</a>
             </li>
           );

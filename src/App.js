@@ -1,10 +1,7 @@
 import React from 'react';
 import './style.css';
 import Form from './components/form/form';
-import Input from './components/input/input';
 import InputGroup from './components/input/group/input-group';
-import InputLabel from './components/input/label/input-label';
-import InputDescription from './components/input/description/input-description';
 import FieldSet from './components/fieldset/fieldset';
 import Button from './components/button/button';
 import AutoInput from './components/input/auto-input';

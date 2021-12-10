@@ -2,7 +2,7 @@ import React from 'react';
 
 const InputDescription = ({ children, id }) => {
   return (
-    <p className="description" id={id}>
+    <p className="input-group__description" id={id}>
       {children}
     </p>
   );

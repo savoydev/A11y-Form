@@ -22,7 +22,7 @@ const Input = ({
   dataType,
   autoComplete = 'off',
   spellCheck = false,
-  errorMessageId
+  errorMessageId,
 }) => {
   const ariaErrorMessageId = `${id}ErrorMsg`;
   const ariaDescribedById = description != null ? `${id}DescribedBy` : null;
@@ -60,6 +60,7 @@ const Input = ({
 
   return (
     <input
+      className="input-group__input"
       id={id}
       name={name}
       type={type}

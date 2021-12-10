@@ -7,7 +7,7 @@ import BaseInput from '../base/base-input.js';
 const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
   return (
     <div
-      className="input-group"
+      className="form__input-group input-group"
       data-invalid={invalid}
       data-input-id={inputId}
       data-required={required}

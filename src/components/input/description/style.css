@@ -1,4 +1,5 @@
-.description, .description * {
+.input-group__description,
+.input-group__description * {
   color: #757575;
   line-height: 1.5rem;
 }

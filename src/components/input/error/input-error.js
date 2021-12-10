@@ -2,7 +2,7 @@ import React from 'react';
 
 const InputError = ({ children, id }) => {
   return (
-    <span className="error-message" id={id}>
+    <span className="input-group__error-message" id={id}>
       {children}
     </span>
   );

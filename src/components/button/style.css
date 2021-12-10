@@ -1,10 +1,8 @@
-button {
+.form__button {
   --bg-color: blue;
-  --font-size: 1rem;
   background-color: var(--bg-color);
   border: none;
-  font-size: var(--font-size);
-  line-height: calc(var(--font-size) * 2);
+  line-height: 2rem;
   color: #ffffff;
   padding: 0;
   padding-left: 1rem;
@@ -13,10 +11,10 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.form__button:hover {
   --bg-color: navy;
 }
 
-button[aria-disabled='true'] {
+.form__button[aria-disabled='true'] {
   --bg-color: lightblue;
 }
