@@ -2,7 +2,7 @@ import React from 'react';
 
 const fieldSetHasLegend = (children) => {
   let fieldSetHasLegend = false;
-  children.forEach((child) => {
+  Array.from(children).forEach((child) => {
     if (child.type === Legend) {
       fieldSetHasLegend = true;
     }

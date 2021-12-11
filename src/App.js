@@ -22,25 +22,29 @@ export default function App() {
             id="Nickname"
             placeholder="Nickname"
             type="text"
-            maxLength={5}
             name="Nickname"
             aria-labelledby="NicknameLabel"
             errorMessageId="NicknameErrorMsg"
             validation={[
               {
-                property: 'minLength',
-                value: 1,
-                errorMessage: 'This is not long enough',
+                property: 'data-minlength',
+                value: 4,
+                message: 'This is not long enough',
               },
+              // {
+              //   property: 'data-maxlength',
+              //   value: 6,
+              //   message: 'Too long, man',
+              // },
               {
-                property: 'data-maxlength',
-                value: 3,
-                errorMessage: 'Too long, man',
+                property: 'aria-required',
+                value: true,
+                message: 'You gotta fill this out',
               },
             ]}
           />
         </InputGroup>
-        <InputGroup inputId="FirstName">
+        {/* <InputGroup inputId="FirstName">
           <InputGroup.Label
             id="FirstNameLabel"
             htmlFor="FirstName"
@@ -60,7 +64,7 @@ export default function App() {
             errorMessageId="FirstNameErrorMsg"
           />
         </InputGroup>
-        <AutoInput id="LastName" labelText="Your Last Name" />
+        <AutoInput id="LastName" labelText="Your Last Name" /> */}
       </FieldSet>
       <Form.Submit>
         <Button>Submit</Button>

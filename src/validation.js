@@ -79,6 +79,7 @@ const DATA_ATTR = {
   INVALID: 'data-invalid',
   REQUIRED: 'data-required',
   MAXLENGTH: 'data-maxlength',
+  MINLENGTH: 'data-minlength',
   DISABLED: 'data-disabled',
 };
 
@@ -134,7 +135,7 @@ function createRangeText({ labelText, lengths }) {
 }
 
 function inputLengths(element) {
-  const min = element.getAttribute(INPUT_ATTR.MINLENGTH);
+  const min = element.dataset.minlength ?? null;
   const max = element.dataset.maxlength ?? null;
   const value = element.value.trim().length;
   return {
@@ -174,11 +175,12 @@ export function isDisabled(element) {
   return element.getAttribute(ARIA_ATTR.DISABLED) === ATTR_BOOL.TRUE
 }
 
-export function extend(element) {
+export function extend(element, errorMessageObj = null) {
   
   const labelText = element.labels.item(0).innerText;
   const lengths = inputLengths(element);
   const required = element.getAttribute(ARIA_ATTR.REQUIRED) === ATTR_BOOL.TRUE;
+  console.log('is required', required)
   const trueValue = element.value,
   const value = element.value.trim();
   const valueMissing = required && value === '';
@@ -205,6 +207,7 @@ export function extend(element) {
     validationMessage: element.validationMessage,
     value,
     valueMissing,
+    errorMessageObj
   };
 
   extendedElement.clearInvalidAttributes = function() {
@@ -246,7 +249,9 @@ export function extend(element) {
   }
 
   extendedElement.setRequiredError = function() {
-    this.setCustomValidity(errorMessages.required(this))
+    console.log('check require message',this.errorMessageObj)
+    const customRequiredMessage = this.errorMessageObj[ARIA_ATTR.REQUIRED];
+    this.setCustomValidity(customRequiredMessage ??errorMessages.required(this))
   }
 
   extendedElement.setTooLongOrShortError = function() {
@@ -254,11 +259,13 @@ export function extend(element) {
   }
 
   extendedElement.setTooShortError = function() {
-    this.setCustomValidity(errorMessages.tooShort(this));
+    const customTooShortMessage = this.errorMessageObj[DATA_ATTR.MINLENGTH]
+    this.setCustomValidity(customTooShortMessage ?? errorMessages.tooShort(this));
   }
 
   extendedElement.setTooLongError = function() {
-    this.setCustomValidity(errorMessages.tooLong(this));
+    const customTooLongMessage = this.errorMessageObj[DATA_ATTR.MAXLENGTH];
+    this.setCustomValidity(customTooLongMessage ?? errorMessages.tooLong(this));
   }
 
   extendedElement.setErrorMessageContent = function(message) {
@@ -276,17 +283,17 @@ export function extend(element) {
   return extendedElement;
 }
 
-export function validateInput(element) {
-  element = extend(element);
+export function validateInput(element, errorMessageObj) {
+  element = extend(element, errorMessageObj);
   if(element.disabled) return;
   if (element.valueMissing) {
     element.setRequiredError();
   } else if (
     element.hasMinAndMax() &&
-    (element.validity.tooShort || element.lessThanMinLength() || element.exceededMaxLength())
+    (element.lessThanMinLength() || element.exceededMaxLength())
   ) {
     element.setTooLongOrShortError();
-  } else if (element.validity.tooShort || element.lessThanMinLength()) {
+  } else if (element.lessThanMinLength()) {
     element.setTooShortError();
   } else if (element.exceededMaxLength()) {
     element.setTooLongError();

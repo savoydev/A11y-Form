@@ -47,9 +47,10 @@ const Input = ({
   }
 
   function onBlur({ target }) {
+    //this isn't the best idea...
     const buttonHover = document.querySelector('button[type="submit"]:hover');
     if (buttonHover) return;
-    validateInput(target);
+    validateInput(target, errorMessageObj);
   }
 
   function onInput({ target, type }) {
@@ -60,14 +61,16 @@ const Input = ({
   }
 
   let validateObj = {};
+  let errorMessageObj = {};
   function validationObject(validation) {
     if (validation == null) return;
     validation.forEach((validate) => {
-      console.log(validate.property);
       validateObj[`${validate.property}`] = validate.value;
+      errorMessageObj[`${validate.property}`] = validate.message;
     });
 
     console.log(validateObj);
+    console.log(errorMessageObj);
   }
 
   validationObject(validation);
@@ -79,12 +82,12 @@ const Input = ({
       name={name}
       type={type}
       placeholder={placeholder}
-      minLength={minLength}
+      data-minlength={minLength}
       data-maxlength={maxLength}
       autoComplete={autoComplete}
       spellCheck={spellCheck}
       ref={textInput}
-      aria-required={required}
+      // aria-required={required}
       aria-invalid={invalid}
       aria-disabled={disabled}
       aria-labelledby={computedLabelId}
