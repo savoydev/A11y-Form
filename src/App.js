@@ -22,11 +22,22 @@ export default function App() {
             id="Nickname"
             placeholder="Nickname"
             type="text"
-            minLength={2}
             maxLength={5}
             name="Nickname"
             aria-labelledby="NicknameLabel"
             errorMessageId="NicknameErrorMsg"
+            validation={[
+              {
+                property: 'minLength',
+                value: 1,
+                errorMessage: 'This is not long enough',
+              },
+              {
+                property: 'data-maxlength',
+                value: 3,
+                errorMessage: 'Too long, man',
+              },
+            ]}
           />
         </InputGroup>
         <InputGroup inputId="FirstName">
