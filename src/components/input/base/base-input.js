@@ -24,6 +24,7 @@ const Input = ({
   autoComplete = 'off',
   spellCheck = false,
   errorMessageId,
+  validation = null,
 }) => {
   const ariaDescribedById = description != null ? `${id}DescribedBy` : null;
   const computedLabelId = labelId ?? `${id}${AUTO_SUFFIX.LABEL}`;
@@ -58,6 +59,19 @@ const Input = ({
     return;
   }
 
+  let validateObj = {};
+  function validationObject(validation) {
+    if (validation == null) return;
+    validation.forEach((validate) => {
+      console.log(validate.property);
+      validateObj[`${validate.property}`] = validate.value;
+    });
+
+    console.log(validateObj);
+  }
+
+  validationObject(validation);
+
   return (
     <input
       className="input-group__input"
@@ -80,6 +94,7 @@ const Input = ({
       onBlur={onBlur}
       onInvalid={onInvalid}
       {...dataType}
+      {...validateObj}
       readOnly={disabled}
     />
   );
