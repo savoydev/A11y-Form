@@ -1,4 +1,5 @@
 import React from 'react';
+import { inputDescriptionPropTypes } from './proptypes';
 
 const InputDescription = ({ children, id }) => {
   return (
@@ -8,4 +9,5 @@ const InputDescription = ({ children, id }) => {
   );
 };
 
+InputDescription.propTypes = inputDescriptionPropTypes;
 export default InputDescription;

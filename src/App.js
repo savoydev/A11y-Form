@@ -17,6 +17,7 @@ export default function App() {
           </InputGroup.Label>
           <InputGroup.Description id="NicknameDescribedBy">
             A nickname could be something your friends call you
+            <span>Cool</span>
           </InputGroup.Description>
           <InputGroup.Error id="NicknameErrorMsg" />
           <InputGroup.Input
