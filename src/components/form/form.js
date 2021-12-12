@@ -6,6 +6,7 @@ import {
   FORM_STATE,
 } from '../../validation';
 import FormErrorSummary from '../form-error-summary/formerrorsummary';
+import {formPropTypes} from './proptypes'
 
 function invalidInputs(form) {
   return Array.from(form.elements).filter((element) => {
@@ -94,5 +95,6 @@ const Submit = ({ children }) => {
 };
 
 Form.Submit = Submit;
+Form.propTypes = formPropTypes;
 
 export default Form;

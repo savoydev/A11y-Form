@@ -8,3 +8,7 @@ export const formErrorSummaryPropTypes = {
     })
   ),
 };
+
+export const formErrorSummaryDefaultProps = {
+  errors: [],
+};
