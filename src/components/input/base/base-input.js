@@ -7,6 +7,7 @@ import {
   setInvalid,
   isDisabled,
   EVENT_TYPES,
+  VALIDATION_ATTR,
 } from '../../../validation';
 
 const Input = ({
@@ -34,17 +35,6 @@ const Input = ({
   useEffect(() => {
     textInput.current.errors = errorMessageObj;
   }, []);
-  // useEffect(() => {
-  //   const validityState = textInput.current.validity;
-  //   console.log('validitystate', validityState);
-  //   if (validityState.valueMissing) {
-  //     textInput.current.setCustomValidity('Missing value');
-  //   } else {
-  //     textInput.current.setCustomValidity('');
-  //   }
-  //   textInput.current.reportValidity();
-  //   console.log('input loaded');
-  // }, []);
 
   function onInvalid({ target }) {
     setInvalid(target);
@@ -52,7 +42,9 @@ const Input = ({
 
   function onBlur({ target }) {
     if (showValidationOn !== EVENT_TYPES.BLUR) return;
-    // this isn't the best idea ..
+    // this isn't the best idea but if a user clicks
+    // the submit button while still focused on the input
+    // the blur fires and prevents the button click
     const buttonHover = document.querySelector('button[type="submit"]:hover');
     if (buttonHover) return;
     validateInput(target);
@@ -71,15 +63,19 @@ const Input = ({
 
   let validateObj = {};
   let errorMessageObj = {};
-  function validationObject(validation) {
+  function parseValidationObject(validation) {
+    const validateArray = Object.entries(validation);
     if (validation == null) return;
-    validation.forEach((validate) => {
-      validateObj[`${validate.property}`] = validate.value;
-      errorMessageObj[`${validate.property}`] = validate.message;
+    validateArray.forEach((validate) => {
+      const mappedName = VALIDATION_ATTR[`${validate[0]}`];
+      const constraint = validate[1].value;
+      const message = validate[1].message;
+      validateObj[mappedName] = constraint;
+      errorMessageObj[mappedName] = message;
     });
   }
 
-  validationObject(validation);
+  parseValidationObject(validation);
   return (
     <input
       className="input-group__input"

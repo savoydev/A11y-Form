@@ -83,6 +83,12 @@ const DATA_ATTR = {
   DISABLED: 'data-disabled',
 };
 
+export const VALIDATION_ATTR = {
+  min: DATA_ATTR.MINLENGTH,
+  max: DATA_ATTR.MAXLENGTH,
+  required: ARIA_ATTR.REQUIRED
+}
+
 export const EVENT_TYPES = {
   BLUR: 'blur',
   INPUT: 'input',

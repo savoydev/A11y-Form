@@ -27,23 +27,20 @@ export default function App() {
             aria-labelledby="NicknameLabel"
             errorMessageId="NicknameErrorMsg"
             showValidationOn={EVENT_TYPES.INPUT}
-            validation={[
-              {
-                property: 'data-minlength',
+            validation={{
+              min: {
                 value: 4,
-                message: 'This is not long enough',
+                message: 'This needs more characters!',
               },
-              // {
-              //   property: 'data-maxlength',
-              //   value: 6,
-              //   message: 'Too long, man',
+              // max: {
+              //   value: 10,
+              //   message: 'Way too many characters, chill.',
               // },
-              {
-                property: 'aria-required',
+              required: {
                 value: true,
-                message: 'You gotta fill this out',
+                message: 'You better type somethig in here.',
               },
-            ]}
+            }}
           />
         </InputGroup>
         {/* <InputGroup inputId="FirstName">
