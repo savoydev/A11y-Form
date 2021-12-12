@@ -1,6 +1,6 @@
 import React from 'react';
 import InputGroup from './group/input-group';
-import { AUTO_SUFFIX } from '../../validation';
+import { AUTO_SUFFIX, EVENT_TYPES } from '../../validation';
 
 let group = {
   invalid: '',
@@ -54,6 +54,8 @@ const AutoInput = ({
   error = null,
   input = null,
   labelText = '',
+  validation = null,
+  showValidationOn,
 }) => {
   const inputId = input?.id ?? id;
   const computedLabelId = `${inputId}${AUTO_SUFFIX.LABEL}`;
@@ -91,13 +93,14 @@ const AutoInput = ({
   const buildDescriptionId = () => {};
 
   const descriptionId = computedDescriptionId;
+  const errorMessageId = buildErrorMessageId();
   const groupId = buildGroupId();
+  const inputName = buildInputName();
+  const inputRequired = buildInputRequired();
   const labelId = buildLabelId();
   const labelFor = buildLabelFor();
   const labelTextValue = buildLabelText();
-  const errorMessageId = buildErrorMessageId();
-  const inputRequired = buildInputRequired();
-  const inputName = buildInputName();
+
   return (
     <InputGroup required={inputRequired} inputId={groupId}>
       <InputGroup.Label id={labelId} htmlFor={labelFor}>
@@ -111,12 +114,14 @@ const AutoInput = ({
       )}
       <InputGroup.Error id={errorMessageId} />
       <InputGroup.Input
-        required={inputRequired}
-        labelId={labelId}
         descriptionId={descriptionId}
         errorMessageId={errorMessageId}
         id={inputId}
+        labelId={labelId}
         name={inputName}
+        required={inputRequired}
+        showValidationOn={showValidationOn}
+        validation={validation}
       />
     </InputGroup>
   );

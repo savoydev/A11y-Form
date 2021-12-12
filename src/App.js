@@ -44,7 +44,16 @@ export default function App() {
             }}
           />
         </InputGroup>
-        <AutoInput id="LastName" labelText="Your Last Name" />
+        <AutoInput
+          id="LastName"
+          labelText="Your Last Name"
+          showValidationOn={EVENT_TYPES.BLUR}
+          validation={{
+            minlength: {
+              value: 2,
+            },
+          }}
+        />
         {/* <InputGroup inputId="FirstName">
           <InputGroup.Label
             id="FirstNameLabel"
