@@ -1,6 +1,7 @@
 import React from 'react';
+import {inputLabelPropTypes, inputLabelDefaultProps} from './proptypes.js'
 
-const InputLabel = ({ id, disabled = false, children, htmlFor }) => {
+const InputLabel = ({ id, disabled, children, htmlFor }) => {
   return (
     <label
       className="input-group__label"
@@ -13,4 +14,6 @@ const InputLabel = ({ id, disabled = false, children, htmlFor }) => {
   );
 };
 
+InputLabel.propTypes = inputLabelPropTypes;
+InputLabel.defaultProps = inputLabelDefaultProps;
 export default InputLabel;
