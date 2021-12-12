@@ -60,14 +60,12 @@ const Form = ({ children, name, showValidationOn }) => {
   function submitMethod(e) {
     e.preventDefault();
     const form = e.target;
-    if (form.dataset.formstate == FORM_STATE.SUBMITTING) {
-      return;
-    }
+    if (form.dataset.formstate == FORM_STATE.SUBMITTING) return;
     form.dataset.formstate = FORM_STATE.SUBMITTING;
     const buttonState = toggleButtonState(e.nativeEvent.submitter);
     buttonState.toggleState();
     setInputErrors(errors(invalidInputs(form)));
-    if (e.target.checkValidity()) {
+    if (form.checkValidity()) {
       setFormData(formDataAsObj(new FormData(form)));
     }
     delete form.dataset.formstate;
@@ -75,11 +73,11 @@ const Form = ({ children, name, showValidationOn }) => {
   }
   return (
     <form
+      className="form"
+      data-showvalidation={showValidationOn}
       name={name}
       noValidate
       onSubmit={submitMethod}
-      className="form"
-      data-showvalidation={showValidationOn}
     >
       <FormErrorSummary errors={inputErrors} />
       {children}

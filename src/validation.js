@@ -30,7 +30,8 @@ const datatype = {
 
 export const AUTO_SUFFIX = {
   LABEL: 'Label',
-  ERROR_MSG: 'ErrorMsg'
+  ERROR_MSG: 'ErrorMsg',
+  DESCRIPTION: 'DescribedBy'
 }
 
 const dataTypes = {

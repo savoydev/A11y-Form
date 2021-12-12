@@ -58,6 +58,7 @@ const AutoInput = ({
   const inputId = input?.id ?? id;
   const computedLabelId = `${inputId}${AUTO_SUFFIX.LABEL}`;
   const computedErrorMsgId = `${inputId}${AUTO_SUFFIX.ERROR_MSG}`;
+  const computedDescriptionId = `${inputId}${AUTO_SUFFIX.DESCRIPTION}`;
 
   const buildLabelId = () => {
     return label?.id ?? computedLabelId;
@@ -87,6 +88,9 @@ const AutoInput = ({
     return input?.name ?? inputId;
   };
 
+  const buildDescriptionId = () => {};
+
+  const descriptionId = computedDescriptionId;
   const groupId = buildGroupId();
   const labelId = buildLabelId();
   const labelFor = buildLabelFor();
@@ -100,7 +104,7 @@ const AutoInput = ({
         {labelTextValue}
       </InputGroup.Label>
       {description && (
-        <InputGroup.Description>
+        <InputGroup.Description id={descriptionId}>
           {description.text}
           {description.children}
         </InputGroup.Description>
@@ -109,6 +113,7 @@ const AutoInput = ({
       <InputGroup.Input
         required={inputRequired}
         labelId={labelId}
+        descriptionId={descriptionId}
         errorMessageId={errorMessageId}
         id={inputId}
         name={inputName}

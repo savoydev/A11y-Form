@@ -1,13 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import {
-  ARIA_ATTR,
   AUTO_SUFFIX,
   INPUT_TYPES,
   validateInput,
   setInvalid,
   isDisabled,
   EVENT_TYPES,
-  VALIDATION_ATTR,
   parseValidationObject,
 } from '../../../validation';
 
@@ -28,6 +26,7 @@ const Input = ({
   spellCheck = false,
   errorMessageId,
   validation = null,
+  descriptionId = null,
   showValidationOn = EVENT_TYPES.SUBMIT,
 }) => {
   const ariaDescribedById = description != null ? `${id}DescribedBy` : null;
@@ -81,7 +80,7 @@ const Input = ({
       aria-disabled={disabled}
       aria-labelledby={computedLabelId}
       aria-errormessage={errorMessageId}
-      aria-describedby={ariaDescribedById}
+      aria-describedby={descriptionId}
       onInput={onInput}
       onBlur={onBlur}
       onInvalid={onInvalid}
