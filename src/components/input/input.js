@@ -4,14 +4,14 @@ import {
   INPUT_TYPES,
   validateInput,
   setInvalid,
-  isDisabled
+  isDisabled,
 } from '../../validation';
-import InputGroup from './group/input-group'
-import InputDescription from './description/input-description'
-import InputError from './error/input-error'
-import InputLabel from './label/input-label'
+import InputGroup from './group/input-group';
+import InputDescription from './description/input-description';
+import InputError from './error/input-error';
+import InputLabel from './label/input-label';
 
-const Input = ({
+const ObsoleteInput = ({
   invalid = null,
   required = null,
   disabled = null,
@@ -57,14 +57,19 @@ const Input = ({
   }
 
   function onInput({ target, type }) {
-    if(isDisabled(target)) {
+    if (isDisabled(target)) {
       target.value = '';
     }
     return;
   }
 
   return (
-    <InputGroup inputId={id} invalid={invalid} required={required} disabled={disabled}>
+    <InputGroup
+      inputId={id}
+      invalid={invalid}
+      required={required}
+      disabled={disabled}
+    >
       <InputLabel id={computedLabelId} htmlFor={id} disabled={disabled}>
         {labelText}
       </InputLabel>
@@ -100,14 +105,8 @@ const Input = ({
   );
 };
 
+ObsoleteInput.Label = InputLabel;
+ObsoleteInput.Description = InputDescription;
+ObsoleteInput.Error = InputError;
 
-
-
-
-
-
-Input.Label = InputLabel;
-Input.Description = InputDescription;
-Input.Error = InputError;
-
-export default Input;
+export default ObsoleteInput;
