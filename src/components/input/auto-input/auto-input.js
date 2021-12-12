@@ -1,6 +1,7 @@
 import React from 'react';
-import InputGroup from './group/input-group';
-import { AUTO_SUFFIX, EVENT_TYPES } from '../../validation';
+import InputGroup from '../group/input-group';
+import { AUTO_SUFFIX } from '../../../validation';
+import {autoInputPropTypes} from './proptypes'
 
 let group = {
   invalid: '',
@@ -50,7 +51,7 @@ const AutoInput = ({
   required = false,
   group = null,
   label = null,
-  description,
+  description = null,
   error = null,
   input = null,
   labelText = '',
@@ -90,9 +91,11 @@ const AutoInput = ({
     return input?.name ?? inputId;
   };
 
-  const buildDescriptionId = () => {};
+  const buildDescriptionId = () => {
+    return description?.id ?? computedDescriptionId
+  };
 
-  const descriptionId = computedDescriptionId;
+  const descriptionId = buildDescriptionId();
   const errorMessageId = buildErrorMessageId();
   const groupId = buildGroupId();
   const inputName = buildInputName();
@@ -127,4 +130,5 @@ const AutoInput = ({
   );
 };
 
+AutoInput.propTypes = autoInputPropTypes;
 export default AutoInput;
