@@ -24,13 +24,12 @@ export default function App() {
             errorMessageId="NicknameErrorMsg"
             id="Nickname"
             labelId="NicknameLabel"
-            name="Nickname"
             placeholder="Nickname"
             type="text"
-            showValidationOn={EVENT_TYPES.BLUR}
+            showValidationOn={EVENT_TYPES.INPUT}
             validation={{
               minlength: {
-                value: 4,
+                value: 5,
                 message: 'This needs more characters!',
               },
               // maxlength: {

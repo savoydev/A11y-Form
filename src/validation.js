@@ -110,7 +110,9 @@ export const INPUT_TYPES = {
 
 export const ATTR_BOOL = {
   TRUE: 'true',
-  FALSE: 'false'
+  FALSE: 'false',
+  ON: 'on',
+  OFF: 'off'
 }
 
 const autoComplete = {

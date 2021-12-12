@@ -1,29 +1,28 @@
 import React, { useRef, useEffect } from 'react';
 import {
-  AUTO_SUFFIX,
-  INPUT_TYPES,
   validateInput,
   setInvalid,
   isDisabled,
   EVENT_TYPES,
   parseValidationObject,
 } from '../../../validation';
+import { baseInputPropTypes, baseInputDefaultProps } from './proptypes';
 
 const Input = ({
-  autoComplete = 'off',
+  autoComplete,
   dataType,
-  descriptionId = null,
-  disabled = null,
+  descriptionId,
+  disabled,
   errorMessageId,
   id,
-  invalid = null,
+  invalid,
   labelId,
   name,
   placeholder,
-  showValidationOn = EVENT_TYPES.SUBMIT,
-  spellCheck = false,
-  type = INPUT_TYPES.TEXT,
-  validation = null,
+  showValidationOn,
+  spellCheck,
+  type,
+  validation,
 }) => {
   const [constraints, validationMessages] = parseValidationObject(
     validation
@@ -70,7 +69,7 @@ const Input = ({
       className="input-group__input"
       data-showvalidation={showValidationOn}
       id={id}
-      name={name}
+      name={name ?? id}
       onInput={onInput}
       onBlur={onBlur}
       onInvalid={onInvalid}
@@ -84,5 +83,8 @@ const Input = ({
     />
   );
 };
+
+Input.propTypes = baseInputPropTypes;
+Input.defaultProps = baseInputDefaultProps;
 
 export default Input;
