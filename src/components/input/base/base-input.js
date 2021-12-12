@@ -30,7 +30,7 @@ const Input = ({
 
   const textInput = useRef(null);
   useEffect(() => {
-    textInput.current.errors = validationMessages;
+    textInput.current['errors'] = validationMessages;
   }, []);
 
   function onInvalid({ target }) {
