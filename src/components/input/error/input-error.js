@@ -1,4 +1,5 @@
 import React from 'react';
+import {inputErrorPropTypes} from './proptypes'
 
 const InputError = ({ children, id }) => {
   return (
@@ -8,4 +9,5 @@ const InputError = ({ children, id }) => {
   );
 };
 
+InputError.propTypes = inputErrorPropTypes;
 export default InputError;
