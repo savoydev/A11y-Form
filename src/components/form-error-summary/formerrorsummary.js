@@ -1,4 +1,5 @@
 import React from 'react';
+import {formErrorSummaryPropTypes} from './proptypes'
 
 const FormErrorSummary = ({ errors }) => {
   return errors.length > 0 ? (
@@ -17,4 +18,5 @@ const FormErrorSummary = ({ errors }) => {
   ) : null;
 };
 
+FormErrorSummary.propTypes = formErrorSummaryPropTypes;
 export default FormErrorSummary;
