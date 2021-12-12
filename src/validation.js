@@ -85,8 +85,8 @@ const DATA_ATTR = {
 };
 
 export const VALIDATION_ATTR = {
-  min: DATA_ATTR.MINLENGTH,
-  max: DATA_ATTR.MAXLENGTH,
+  minlength: DATA_ATTR.MINLENGTH,
+  maxlength: DATA_ATTR.MAXLENGTH,
   required: ARIA_ATTR.REQUIRED
 }
 
@@ -204,36 +204,37 @@ export function isDisabled(element) {
 }
 
 export function extend(element) {
+  const disabled = isDisabled(element);
+  const errorMessageElement = document.getElementById(element.getAttribute(ARIA_ATTR.ERRORMESSAGE));
+  const inputGroup = document.querySelector(
+    `[${DATA_ATTR.INPUT_ID}='${element.id}']`
+  );
   const labelText = element.labels.item(0).innerText;
   const lengths = inputLengths(element);
   const required = element.getAttribute(ARIA_ATTR.REQUIRED) === ATTR_BOOL.TRUE;
   const trueValue = element.value,
   const value = element.value.trim();
   const valueMissing = required && value === '';
-  const errorMessageElement = document.getElementById(element.getAttribute(ARIA_ATTR.ERRORMESSAGE));
-  const inputGroup = document.querySelector(
-    `[${DATA_ATTR.INPUT_ID}='${element.id}']`
-  );
-  const disabled = isDisabled(element);
+
   let extendedElement = {
     attributes: element.getAttributeNames(),
-    dataset: element.dataset,
+    dataset: element.dataset,    
+    disabled,
     element,
     errorMessageElement,
+    errors: element.errors,
     id: element.id,
     inputGroup,
-    disabled,
     labels: element.labels,
     labelText,
     lengths,
     required,
     tagName: element.tagName,
     trueValue,
-    validity: element.validity,
     validationMessage: element.validationMessage,
+    validity: element.validity,
     value,
     valueMissing,
-    errors: element.errors
   };
 
   extendedElement.clearInvalidAttributes = function() {

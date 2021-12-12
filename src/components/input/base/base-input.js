@@ -10,27 +10,25 @@ import {
 } from '../../../validation';
 
 const Input = ({
-  invalid = null,
-  required = null,
-  disabled = null,
-  labelId,
-  id,
-  placeholder,
-  name,
-  type = INPUT_TYPES.TEXT,
-  description,
-  minLength,
-  maxLength,
-  dataType,
   autoComplete = 'off',
-  spellCheck = false,
-  errorMessageId,
-  validation = null,
+  dataType,
   descriptionId = null,
+  disabled = null,
+  errorMessageId,
+  id,
+  invalid = null,
+  labelId,
+  name,
+  placeholder,
   showValidationOn = EVENT_TYPES.SUBMIT,
+  spellCheck = false,
+  type = INPUT_TYPES.TEXT,
+  validation = null,
 }) => {
-  const ariaDescribedById = description != null ? `${id}DescribedBy` : null;
-  const computedLabelId = labelId ?? `${id}${AUTO_SUFFIX.LABEL}`;
+  const [constraints, validationMessages] = parseValidationObject(
+    validation
+  ) ?? [null, null];
+
   const textInput = useRef(null);
   useEffect(() => {
     textInput.current.errors = validationMessages;
@@ -61,32 +59,28 @@ const Input = ({
     validateInput(target);
   }
 
-  const [constraints, validationMessages] = parseValidationObject(validation);
   return (
     <input
+      aria-describedby={descriptionId}
+      aria-disabled={disabled}
+      aria-errormessage={errorMessageId}
+      aria-invalid={invalid}
+      aria-labelledby={labelId}
+      autoComplete={autoComplete}
       className="input-group__input"
+      data-showvalidation={showValidationOn}
       id={id}
       name={name}
-      type={type}
-      placeholder={placeholder}
-      data-minlength={minLength}
-      data-maxlength={maxLength}
-      data-showvalidation={showValidationOn}
-      autoComplete={autoComplete}
-      spellCheck={spellCheck}
-      ref={textInput}
-      // aria-required={required}
-      aria-invalid={invalid}
-      aria-disabled={disabled}
-      aria-labelledby={computedLabelId}
-      aria-errormessage={errorMessageId}
-      aria-describedby={descriptionId}
       onInput={onInput}
       onBlur={onBlur}
       onInvalid={onInvalid}
+      placeholder={placeholder}
+      readOnly={disabled}
+      ref={textInput}
+      spellCheck={spellCheck}
+      type={type}
       {...dataType}
       {...constraints}
-      readOnly={disabled}
     />
   );
 };

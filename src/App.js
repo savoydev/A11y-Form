@@ -15,24 +15,25 @@ export default function App() {
           <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
             Nickname
           </InputGroup.Label>
-          <InputGroup.Description>
+          <InputGroup.Description id="NicknameDescribedBy">
             A nickname could be something your friends call you
           </InputGroup.Description>
           <InputGroup.Error id="NicknameErrorMsg" />
           <InputGroup.Input
+            descriptionId="NicknameDescribedBy"
+            errorMessageId="NicknameErrorMsg"
             id="Nickname"
+            labelId="NicknameLabel"
+            name="Nickname"
             placeholder="Nickname"
             type="text"
-            name="Nickname"
-            aria-labelledby="NicknameLabel"
-            errorMessageId="NicknameErrorMsg"
-            showValidationOn={EVENT_TYPES.INPUT}
+            showValidationOn={EVENT_TYPES.BLUR}
             validation={{
-              min: {
+              minlength: {
                 value: 4,
                 message: 'This needs more characters!',
               },
-              // max: {
+              // maxlength: {
               //   value: 10,
               //   message: 'Way too many characters, chill.',
               // },
@@ -43,6 +44,7 @@ export default function App() {
             }}
           />
         </InputGroup>
+        <AutoInput id="LastName" labelText="Your Last Name" />
         {/* <InputGroup inputId="FirstName">
           <InputGroup.Label
             id="FirstNameLabel"
