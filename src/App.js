@@ -5,6 +5,7 @@ import InputGroup from './components/input/group/input-group';
 import FieldSet from './components/fieldset/fieldset';
 import Button from './components/button/button';
 import AutoInput from './components/input/auto-input';
+import { EVENT_TYPES } from './validation.js';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
             name="Nickname"
             aria-labelledby="NicknameLabel"
             errorMessageId="NicknameErrorMsg"
+            showValidationOn={EVENT_TYPES.INPUT}
             validation={[
               {
                 property: 'data-minlength',

@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { validateInput } from '../../validation';
+import { validateInput, extend, EVENT_TYPES } from '../../validation';
 import FormErrorSummary from '../form-error-summary/formerrorsummary';
+
+const FORM_STATE = {
+  INITIAL: 'initial',
+  SUBMITTING: 'submitting',
+  SUBMITTED: 'submitted',
+};
 
 const Form = ({ children, name }) => {
   let [inputErrors, setInputErrors] = useState([]);
@@ -13,17 +19,17 @@ const Form = ({ children, name }) => {
   function submitMethod(e) {
     e.preventDefault();
     const form = e.target;
-    if (form.dataset.submitting == 'true') {
+    if (form.dataset.formstate == FORM_STATE.SUBMITTING) {
       return;
     }
-    form.dataset.submitting = 'true';
+    form.dataset.formstate = FORM_STATE.SUBMITTING;
     const buttonState = toggleButtonState(e.nativeEvent.submitter);
     buttonState.toggleState();
     setInputErrors(errors(invalidInputs(form)));
     if (e.target.checkValidity()) {
       setFormData(formDataAsObj(new FormData(form)));
     }
-    delete form.dataset.submitting;
+    delete form.dataset.formstate;
     buttonState.toggleState();
   }
   return (
@@ -51,6 +57,7 @@ function invalidInputs(form) {
   return Array.from(form.elements).filter((element) => {
     if (element.tagName.match(/INPUT|SELECT|TEXTAREA|\\./g)) {
       validateInput(element);
+      element.checkValidity();
       if (!element.validity.valid) {
         return element;
       }
@@ -62,7 +69,7 @@ function toggleButtonState(button) {
   const buttonText = button.innerHTML;
   const submittingText = 'Submitting';
   const toggleState = () => {
-    if (button.form.dataset.submitting == 'true') {
+    if (button.form.dataset.formstate == FORM_STATE.SUBMITTING) {
       button.innerHTML = submittingText;
       button.setAttribute('aria-disabled', 'true');
     } else {

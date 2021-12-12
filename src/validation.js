@@ -83,9 +83,10 @@ const DATA_ATTR = {
   DISABLED: 'data-disabled',
 };
 
-const EVENT_TYPES = {
+export const EVENT_TYPES = {
   BLUR: 'blur',
   INPUT: 'input',
+  SUBMIT: 'submit'
 };
 
 export const INPUT_TYPES = {
@@ -175,12 +176,10 @@ export function isDisabled(element) {
   return element.getAttribute(ARIA_ATTR.DISABLED) === ATTR_BOOL.TRUE
 }
 
-export function extend(element, errorMessageObj = null) {
-  
+export function extend(element) {
   const labelText = element.labels.item(0).innerText;
   const lengths = inputLengths(element);
   const required = element.getAttribute(ARIA_ATTR.REQUIRED) === ATTR_BOOL.TRUE;
-  console.log('is required', required)
   const trueValue = element.value,
   const value = element.value.trim();
   const valueMissing = required && value === '';
@@ -207,7 +206,7 @@ export function extend(element, errorMessageObj = null) {
     validationMessage: element.validationMessage,
     value,
     valueMissing,
-    errorMessageObj
+    errors: element.errors
   };
 
   extendedElement.clearInvalidAttributes = function() {
@@ -249,8 +248,7 @@ export function extend(element, errorMessageObj = null) {
   }
 
   extendedElement.setRequiredError = function() {
-    console.log('check require message',this.errorMessageObj)
-    const customRequiredMessage = this.errorMessageObj[ARIA_ATTR.REQUIRED];
+    const customRequiredMessage = this.errors[ARIA_ATTR.REQUIRED];
     this.setCustomValidity(customRequiredMessage ??errorMessages.required(this))
   }
 
@@ -259,12 +257,12 @@ export function extend(element, errorMessageObj = null) {
   }
 
   extendedElement.setTooShortError = function() {
-    const customTooShortMessage = this.errorMessageObj[DATA_ATTR.MINLENGTH]
+    const customTooShortMessage = this.errors[DATA_ATTR.MINLENGTH]
     this.setCustomValidity(customTooShortMessage ?? errorMessages.tooShort(this));
   }
 
   extendedElement.setTooLongError = function() {
-    const customTooLongMessage = this.errorMessageObj[DATA_ATTR.MAXLENGTH];
+    const customTooLongMessage = this.errors[DATA_ATTR.MAXLENGTH];
     this.setCustomValidity(customTooLongMessage ?? errorMessages.tooLong(this));
   }
 
@@ -283,8 +281,8 @@ export function extend(element, errorMessageObj = null) {
   return extendedElement;
 }
 
-export function validateInput(element, errorMessageObj) {
-  element = extend(element, errorMessageObj);
+export function validateInput(element) {
+  element = extend(element);
   if(element.disabled) return;
   if (element.valueMissing) {
     element.setRequiredError();
