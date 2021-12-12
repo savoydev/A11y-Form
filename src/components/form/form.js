@@ -1,14 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import { validateInput, extend, EVENT_TYPES } from '../../validation';
+import {
+  validateInput,
+  ARIA_ATTR,
+  ATTR_BOOL,
+  FORM_STATE,
+} from '../../validation';
 import FormErrorSummary from '../form-error-summary/formerrorsummary';
 
-const FORM_STATE = {
-  INITIAL: 'initial',
-  SUBMITTING: 'submitting',
-  SUBMITTED: 'submitted',
-};
+function invalidInputs(form) {
+  return Array.from(form.elements).filter((element) => {
+    if (element.tagName.match(/INPUT|SELECT|TEXTAREA|\\./g)) {
+      validateInput(element);
+      element.checkValidity();
+      if (!element.validity.valid) {
+        return element;
+      }
+    }
+  });
+}
 
-const Form = ({ children, name }) => {
+function formDataAsObj(formData) {
+  return Object.fromEntries(formData.entries());
+}
+
+function errors(inputElements) {
+  return inputElements.map(({ id, validationMessage }) => {
+    return {
+      id,
+      validationMessage,
+    };
+  });
+}
+
+function toggleButtonState(button) {
+  const buttonText = button.innerHTML;
+  const submittingText = 'Submitting';
+  const toggleState = () => {
+    if (button.form.dataset.formstate == FORM_STATE.SUBMITTING) {
+      button.innerHTML = submittingText;
+      button.setAttribute(ARIA_ATTR.DISABLED, ATTR_BOOL.TRUE);
+    } else {
+      button.innerHTML = buttonText;
+      button.removeAttribute(ARIA_ATTR.DISABLED);
+    }
+  };
+  return {
+    toggleState,
+  };
+}
+
+const Form = ({ children, name, showValidationOn }) => {
   let [inputErrors, setInputErrors] = useState([]);
   let [formData, setFormData] = useState({});
 
@@ -33,54 +74,18 @@ const Form = ({ children, name }) => {
     buttonState.toggleState();
   }
   return (
-    <form name={name} noValidate onSubmit={submitMethod} className="form">
+    <form
+      name={name}
+      noValidate
+      onSubmit={submitMethod}
+      className="form"
+      data-showvalidation={showValidationOn}
+    >
       <FormErrorSummary errors={inputErrors} />
       {children}
     </form>
   );
 };
-
-function formDataAsObj(formData) {
-  return Object.fromEntries(formData.entries());
-}
-
-function errors(inputElements) {
-  return inputElements.map((element) => {
-    return {
-      inputId: element.id,
-      errorMessage: element.validationMessage,
-    };
-  });
-}
-
-function invalidInputs(form) {
-  return Array.from(form.elements).filter((element) => {
-    if (element.tagName.match(/INPUT|SELECT|TEXTAREA|\\./g)) {
-      validateInput(element);
-      element.checkValidity();
-      if (!element.validity.valid) {
-        return element;
-      }
-    }
-  });
-}
-
-function toggleButtonState(button) {
-  const buttonText = button.innerHTML;
-  const submittingText = 'Submitting';
-  const toggleState = () => {
-    if (button.form.dataset.formstate == FORM_STATE.SUBMITTING) {
-      button.innerHTML = submittingText;
-      button.setAttribute('aria-disabled', 'true');
-    } else {
-      button.innerHTML = buttonText;
-      button.removeAttribute('aria-disabled');
-    }
-  };
-  return {
-    toggleState,
-  };
-}
 
 const Submit = ({ children }) => {
   const props = {

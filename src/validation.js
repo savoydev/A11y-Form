@@ -89,6 +89,12 @@ export const VALIDATION_ATTR = {
   required: ARIA_ATTR.REQUIRED
 }
 
+export const FORM_STATE = {
+  INITIAL: 'INITIAL',
+  SUBMITTING: 'SUBMITTING',
+  SUBMITTED: 'SUBMITTED',
+};
+
 export const EVENT_TYPES = {
   BLUR: 'blur',
   INPUT: 'input',
@@ -101,7 +107,7 @@ export const INPUT_TYPES = {
   EMAIL: 'email',
 };
 
-const ATTR_BOOL = {
+export const ATTR_BOOL = {
   TRUE: 'true',
   FALSE: 'false'
 }

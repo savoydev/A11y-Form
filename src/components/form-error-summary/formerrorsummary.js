@@ -7,8 +7,8 @@ const FormErrorSummary = ({ errors }) => {
       <ul className="error-summary__error-list error-list">
         {errors.map((error) => {
           return (
-            <li className="error-list__item" key={error.inputId}>
-              <a href={`#${error.inputId}`}>{error.errorMessage}</a>
+            <li className="error-list__item" key={error.id}>
+              <a href={`#${error.id}`}>{error.validationMessage}</a>
             </li>
           );
         })}
