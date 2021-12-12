@@ -121,6 +121,20 @@ const autoComplete = {
   oneTimeCode: 'one-time-code',
 };
 
+export function parseValidationObject(validation) {
+  if (validation == null) return;
+  let contraints = {};
+  let validationMessages = {};
+  Object.entries(validation).forEach((constraint) => {
+    const constraintName = VALIDATION_ATTR[`${constraint[0]}`];
+    const constraintValue = constraint[1].value;
+    const message = constraint[1].message;
+    contraints[constraintName] = constraintValue;
+    validationMessages[constraintName] = message;
+  });
+  return [contraints, validationMessages];
+}
+
 function createRequiredInputText({ tagName, labelText }) {
   let returnString = tagName === 'INPUT' ? 'Enter' : 'Select';
   returnString += ` a(n) ${labelText}.`;

@@ -8,6 +8,7 @@ import {
   isDisabled,
   EVENT_TYPES,
   VALIDATION_ATTR,
+  parseValidationObject,
 } from '../../../validation';
 
 const Input = ({
@@ -33,7 +34,7 @@ const Input = ({
   const computedLabelId = labelId ?? `${id}${AUTO_SUFFIX.LABEL}`;
   const textInput = useRef(null);
   useEffect(() => {
-    textInput.current.errors = errorMessageObj;
+    textInput.current.errors = validationMessages;
   }, []);
 
   function onInvalid({ target }) {
@@ -61,21 +62,7 @@ const Input = ({
     validateInput(target);
   }
 
-  let validateObj = {};
-  let errorMessageObj = {};
-  function parseValidationObject(validation) {
-    const validateArray = Object.entries(validation);
-    if (validation == null) return;
-    validateArray.forEach((validate) => {
-      const mappedName = VALIDATION_ATTR[`${validate[0]}`];
-      const constraint = validate[1].value;
-      const message = validate[1].message;
-      validateObj[mappedName] = constraint;
-      errorMessageObj[mappedName] = message;
-    });
-  }
-
-  parseValidationObject(validation);
+  const [constraints, validationMessages] = parseValidationObject(validation);
   return (
     <input
       className="input-group__input"
@@ -99,7 +86,7 @@ const Input = ({
       onBlur={onBlur}
       onInvalid={onInvalid}
       {...dataType}
-      {...validateObj}
+      {...constraints}
       readOnly={disabled}
     />
   );
