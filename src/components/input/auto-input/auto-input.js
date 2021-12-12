@@ -49,13 +49,13 @@ let input = {
 const AutoInput = ({
   id,
   required = false,
-  group = null,
-  label = null,
-  description = null,
-  error = null,
-  input = null,
-  labelText = '',
-  validation = null,
+  group,
+  label,
+  description,
+  error,
+  input,
+  labelText,
+  validation,
   showValidationOn,
 }) => {
   const inputId = input?.id ?? id;
