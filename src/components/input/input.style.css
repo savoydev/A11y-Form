@@ -2,5 +2,6 @@
 @import './label/input-label.style.css';
 @import './description/input-description.style.css';
 @import './base/base-input.style.css';
+@import './error/input-error.styles.css';
 @import './error-state/error-state.style.css';
 @import './disabled-state/disabled-state.style.css';
