@@ -1,13 +1,13 @@
 import AutoInput from './auto-input/auto-input';
-import Input from './base/';
+import BaseInput from './base/';
 import InputDescription from './description/input-description';
 import InputError from './error/input-error.js';
-import InputGroup from './group/input-group.js';
+import InputGroup from './group/';
 import InputLabel from './label/input-label.js';
 
 export {
   AutoInput,
-  Input,
+  BaseInput,
   InputDescription as Description,
   InputError as ValidationMessage,
   InputGroup,

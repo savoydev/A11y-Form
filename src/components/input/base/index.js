@@ -1,2 +1,2 @@
-import Input from './base-input.markup.js';
-export default Input;
+import BaseInput from './base-input.markup';
+export default BaseInput;

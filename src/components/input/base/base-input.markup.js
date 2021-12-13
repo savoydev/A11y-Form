@@ -11,7 +11,7 @@ import {
   baseInputDefaultProps,
 } from './base-input.proptypes';
 
-const Input = ({
+const BaseInput = ({
   autoComplete,
   dataType,
   descriptionId,
@@ -87,7 +87,7 @@ const Input = ({
   );
 };
 
-Input.propTypes = baseInputPropTypes;
-Input.defaultProps = baseInputDefaultProps;
+BaseInput.propTypes = baseInputPropTypes;
+BaseInput.defaultProps = baseInputDefaultProps;
 
-export default Input;
+export default BaseInput;

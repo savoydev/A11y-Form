@@ -1,5 +1,5 @@
 import React from 'react';
-import { Description, ValidationMessage, Label, Input as BaseInput } from '../';
+import { Description, ValidationMessage, Label, BaseInput } from '../';
 import { inputGroupPropTypes } from './input-group.proptypes';
 
 const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
