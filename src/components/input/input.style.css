@@ -1,6 +1,6 @@
-@import './group/group.style.css';
-@import './label/label.style.css';
-@import './description/description.style.css';
-@import './base/base.style.css';
+@import './group/input-group.style.css';
+@import './label/input-label.style.css';
+@import './description/input-description.style.css';
+@import './base/base-input.style.css';
 @import './error-state/error-state.style.css';
 @import './disabled-state/disabled-state.style.css';
