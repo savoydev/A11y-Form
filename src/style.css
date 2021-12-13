@@ -13,6 +13,6 @@
 }
 
 @import './components/button/style.css';
-@import './components/fieldset/style.css';
+@import './components/fieldset/fieldset.style.css';
 @import './components/form-error-summary/style.css';
 @import './components/input/style.css';

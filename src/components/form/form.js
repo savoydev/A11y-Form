@@ -6,6 +6,7 @@ import {
   FORM_STATE,
 } from '../../validation';
 import FormErrorSummary from '../form-error-summary/formerrorsummary';
+import FieldSet from '../fieldset/fieldset'
 import {formPropTypes} from './proptypes'
 
 function invalidInputs(form) {
@@ -94,6 +95,7 @@ const Submit = ({ children }) => {
   return React.cloneElement(children, { ...props });
 };
 
+Form.FieldSet = FieldSet;
 Form.Submit = Submit;
 Form.propTypes = formPropTypes;
 

@@ -10,7 +10,7 @@ import { EVENT_TYPES } from './validation.js';
 export default function App() {
   return (
     <Form name="testing">
-      <FieldSet name="Identity" legend="Identity">
+      <Form.FieldSet name="Identity" legend="Identity">
         <InputGroup inputId="Nickname">
           <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
             Nickname
@@ -75,7 +75,7 @@ export default function App() {
           />
         </InputGroup>
         <AutoInput id="LastName" labelText="Your Last Name" /> */}
-      </FieldSet>
+      </Form.FieldSet>
       <Form.Submit>
         <Button>Submit</Button>
       </Form.Submit>
