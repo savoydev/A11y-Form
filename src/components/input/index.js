@@ -1,4 +1,4 @@
-import AutoInput from './auto-input/auto-input';
+import AutoInput from './auto-input/';
 import BaseInput from './base/base-input.markup';
 import InputDescription from './description/input-description';
 import InputError from './error/input-error.js';
