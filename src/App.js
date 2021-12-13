@@ -14,7 +14,6 @@ export default function App() {
   return (
     <Form name="SignUp">
       <Form.FieldSet name="Identity" legend="Identity">
-        <span></span>
         <InputGroup inputId="Nickname">
           <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
             Nickname
