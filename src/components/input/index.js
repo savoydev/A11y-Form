@@ -3,13 +3,13 @@ import BaseInput from './base/index.js';
 import InputDescription from './description/input-description';
 import InputError from './error/input-error.js';
 import InputGroup from './group/index.js';
-import InputLabel from './label/input-label.js';
+import InputLabel from './label/input-label';
 
 export {
   AutoInput,
   BaseInput,
-  InputDescription as Description,
-  InputError as ValidationMessage,
+  InputDescription,
+  InputError,
   InputGroup,
-  InputLabel as Label,
+  InputLabel,
 };

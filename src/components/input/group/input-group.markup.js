@@ -1,5 +1,10 @@
 import React from 'react';
-import { Description, ValidationMessage, Label, BaseInput } from '../index.js';
+import {
+  InputDescription,
+  InputError,
+  InputLabel,
+  BaseInput,
+} from '../index.js';
 import { inputGroupPropTypes } from './input-group.proptypes';
 
 const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
@@ -16,9 +21,9 @@ const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
   );
 };
 
-InputGroup.Label = Label;
-InputGroup.Description = Description;
-InputGroup.Error = ValidationMessage;
+InputGroup.Label = InputLabel;
+InputGroup.Description = InputDescription;
+InputGroup.Error = InputError;
 InputGroup.Input = BaseInput;
 
 InputGroup.propTypes = inputGroupPropTypes;

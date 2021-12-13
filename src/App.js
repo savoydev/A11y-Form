@@ -7,16 +7,18 @@ import {
   Form,
   FieldSet,
   Button,
+  InputLabel,
 } from './components/index.js';
 
 export default function App() {
   return (
     <Form name="testing">
-      <FieldSet name="Identity" legend="Identity">
+      <Form.FieldSet name="Identity" legend="Identity">
+        <span></span>
         <InputGroup inputId="Nickname">
-          <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
+          {/* <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
             Nickname
-          </InputGroup.Label>
+          </InputGroup.Label> */}
           <InputGroup.Description id="NicknameDescribedBy">
             A nickname could be something your friends call you
           </InputGroup.Description>
@@ -76,7 +78,7 @@ export default function App() {
           />
         </InputGroup>
         <AutoInput id="LastName" labelText="Your Last Name" /> */}
-      </FieldSet>
+      </Form.FieldSet>
       <Form.Submit>
         <Button>Submit</Button>
       </Form.Submit>

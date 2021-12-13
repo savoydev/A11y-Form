@@ -5,10 +5,10 @@ import FormErrorSummary from './form-error-summary/form-error-summary';
 import {
   AutoInput,
   BaseInput,
-  Description,
-  ValidationMessage,
+  InputDescription,
+  InputError,
   InputGroup,
-  Label,
+  InputLabel,
 } from './input';
 
 export {
@@ -18,8 +18,8 @@ export {
   FormErrorSummary,
   AutoInput,
   BaseInput,
-  Description,
-  ValidationMessage,
+  InputDescription,
+  InputError,
   InputGroup,
-  Label,
+  InputLabel,
 };
