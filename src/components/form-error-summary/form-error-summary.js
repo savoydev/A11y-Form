@@ -1,5 +1,8 @@
 import React from 'react';
-import {formErrorSummaryPropTypes, formErrorSummaryDefaultProps} from './proptypes'
+import {
+  formErrorSummaryPropTypes,
+  formErrorSummaryDefaultProps,
+} from './proptypes';
 
 const FormErrorSummary = ({ errors }) => {
   return errors.length > 0 ? (

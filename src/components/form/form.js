@@ -5,7 +5,7 @@ import {
   ATTR_BOOL,
   FORM_STATE,
 } from '../../validation';
-import FormErrorSummary from '../form-error-summary/formerrorsummary';
+import FormErrorSummary from '../form-error-summary/form-error-summary';
 import FieldSet from '../fieldset/fieldset'
 import {formPropTypes} from './proptypes'
 
