@@ -1,4 +1,10 @@
-import {VALIDATION_ATTR, ARIA_ATTR, ATTR_BOOL, DATA_ATTR} from './attributes'
+import {
+  VALIDATION_ATTR,
+  ARIA_ATTR,
+  ATTR_BOOL,
+  DATA_ATTR,
+  TAG_NAME,
+} from './attributes';
 
 const validate = {
   mindate: '',
@@ -30,8 +36,6 @@ const datatype = {
   pattern: '',
 };
 
-
-
 const dataTypes = {
   wholeNumber: {
     pattern: '[0-9]*',
@@ -51,15 +55,6 @@ const dataTypes = {
   },
 };
 
-
-
-
-
-
-
-
-
-
 export function parseValidationObject(validation) {
   if (validation == null) return;
   let contraints = {};
@@ -75,7 +70,7 @@ export function parseValidationObject(validation) {
 }
 
 function createRequiredInputText({ tagName, labelText }) {
-  let returnString = tagName === 'INPUT' ? 'Enter' : 'Select';
+  let returnString = tagName === TAG_NAME.INPUT ? 'Enter' : 'Select';
   returnString += ` a(n) ${labelText}.`;
   return returnString;
 }
@@ -113,7 +108,7 @@ function inputLengths(element) {
     },
     lessThanMinLength: () => {
       return min === null ? false : value < min;
-    }
+    },
   };
 }
 
@@ -132,25 +127,27 @@ const errorMessages = {
 };
 
 export function isDisabled(element) {
-  return element.getAttribute(ARIA_ATTR.DISABLED) === ATTR_BOOL.TRUE
+  return element.getAttribute(ARIA_ATTR.DISABLED) === ATTR_BOOL.TRUE;
 }
 
 export function extend(element) {
   const disabled = isDisabled(element);
-  const errorMessageElement = document.getElementById(element.getAttribute(ARIA_ATTR.ERRORMESSAGE));
+  const errorMessageElement = document.getElementById(
+    element.getAttribute(ARIA_ATTR.ERRORMESSAGE)
+  );
   const inputGroup = document.querySelector(
     `[${DATA_ATTR.INPUT_ID}='${element.id}']`
   );
   const labelText = element.labels.item(0).innerText;
   const lengths = inputLengths(element);
   const required = element.getAttribute(ARIA_ATTR.REQUIRED) === ATTR_BOOL.TRUE;
-  const trueValue = element.value,
+  const trueValue = element.value;
   const value = element.value.trim();
   const valueMissing = required && value === '';
 
   let extendedElement = {
     attributes: element.getAttributeNames(),
-    dataset: element.dataset,    
+    dataset: element.dataset,
     disabled,
     element,
     errorMessageElement,
@@ -160,6 +157,7 @@ export function extend(element) {
     labels: element.labels,
     labelText,
     lengths,
+    ...lengths,
     required,
     tagName: element.tagName,
     trueValue,
@@ -169,81 +167,85 @@ export function extend(element) {
     valueMissing,
   };
 
-  extendedElement.clearInvalidAttributes = function() {
+  extendedElement.clearInvalidAttributes = function () {
     element.setAttribute(ARIA_ATTR.INVALID, ATTR_BOOL.FALSE);
     this.clearErrorMessageContent();
     this.inputGroup.dataset.invalid = ATTR_BOOL.FALSE;
-  }
+  };
 
-  extendedElement.clearValidationMessage = function() {
-    this.element.setCustomValidity('')
-  }
+  extendedElement.clearValidationMessage = function () {
+    this.element.setCustomValidity('');
+  };
 
-  extendedElement.getAttribute = function(attribute) {
-    return this.element.getAttribute(attribute)
-  }
+  extendedElement.getAttribute = function (attribute) {
+    return this.element.getAttribute(attribute);
+  };
 
-  extendedElement.setCustomValidity = function(message) {
-    return this.element.setCustomValidity(message)
-  }
+  extendedElement.setCustomValidity = function (message) {
+    return this.element.setCustomValidity(message);
+  };
 
-  extendedElement.checkValidity = function() {
+  extendedElement.checkValidity = function () {
     return this.element.checkValidity();
-  }
+  };
 
-  extendedElement.setAttribute = function(attribute, value) {
-    this.element.setAttribute(attribute, value)
-  }
+  extendedElement.setAttribute = function (attribute, value) {
+    this.element.setAttribute(attribute, value);
+  };
 
-  extendedElement.hasMinAndMax = function() {
+  extendedElement.hasMinAndMax = function () {
     return this.lengths.hasMinAndMax();
-  }
+  };
 
-  extendedElement.lessThanMinLength = function() {
+  extendedElement.lessThanMinLength = function () {
     return this.lengths.lessThanMinLength();
-  }
+  };
 
-  extendedElement.exceededMaxLength = function() {
+  extendedElement.exceededMaxLength = function () {
     return this.lengths.exceededMaxLength();
-  }
+  };
 
-  extendedElement.setRequiredError = function() {
+  extendedElement.setRequiredError = function () {
     const customRequiredMessage = this.errors[ARIA_ATTR.REQUIRED];
-    this.setCustomValidity(customRequiredMessage ??errorMessages.required(this))
-  }
+    this.setCustomValidity(
+      customRequiredMessage ?? errorMessages.required(this)
+    );
+  };
 
-  extendedElement.setTooLongOrShortError = function() {
+  extendedElement.setTooLongOrShortError = function () {
     this.setCustomValidity(errorMessages.tooLongOrShort(this));
-  }
+  };
 
-  extendedElement.setTooShortError = function() {
-    const customTooShortMessage = this.errors[DATA_ATTR.MINLENGTH]
-    this.setCustomValidity(customTooShortMessage ?? errorMessages.tooShort(this));
-  }
+  extendedElement.setTooShortError = function () {
+    const customTooShortMessage = this.errors[DATA_ATTR.MINLENGTH];
+    this.setCustomValidity(
+      customTooShortMessage ?? errorMessages.tooShort(this)
+    );
+  };
 
-  extendedElement.setTooLongError = function() {
+  extendedElement.setTooLongError = function () {
     const customTooLongMessage = this.errors[DATA_ATTR.MAXLENGTH];
     this.setCustomValidity(customTooLongMessage ?? errorMessages.tooLong(this));
-  }
+  };
 
-  extendedElement.setErrorMessageContent = function(message) {
+  extendedElement.setErrorMessageContent = function (message) {
     this.errorMessageElement.innerText = message;
-  }
+  };
 
-  extendedElement.clearErrorMessageContent = function() {
-    this.setErrorMessageContent('')
-  }
+  extendedElement.clearErrorMessageContent = function () {
+    this.setErrorMessageContent('');
+  };
 
-  extendedElement.setErrorMessageContentToValidationMessage = function() {
-    this.setErrorMessageContent(this.validationMessage)
-  }
-
+  extendedElement.setErrorMessageContentToValidationMessage = function () {
+    this.setErrorMessageContent(this.validationMessage);
+  };
+  console.log(extendedElement);
   return extendedElement;
 }
 
 export function validateInput(element) {
   element = extend(element);
-  if(element.disabled) return;
+  if (element.disabled) return;
   if (element.valueMissing) {
     element.setRequiredError();
   } else if (
@@ -262,5 +264,3 @@ export function validateInput(element) {
     element.clearInvalidAttributes();
   }
 }
-
-

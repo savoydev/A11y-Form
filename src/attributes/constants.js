@@ -4,6 +4,13 @@ export const AUTO_SUFFIX = {
   DESCRIPTION: 'DescribedBy',
 };
 
+export const TAG_NAME = {
+  INPUT: 'INPUT',
+  SELECT: 'SELECT',
+  TEXTAREA: 'TEXTAREA',
+  FIELDSET: 'FIELDSET',
+};
+
 export const AUTOCOMPLETE = {
   ON: 'on',
   OFF: 'off',

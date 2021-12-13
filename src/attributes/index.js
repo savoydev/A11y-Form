@@ -9,4 +9,5 @@ export {
   INPUT_TYPES,
   ATTR_BOOL,
   AUTOCOMPLETE,
+  TAG_NAME,
 } from './constants';
