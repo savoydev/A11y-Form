@@ -1,3 +1,6 @@
+import { FORM_STATE, ARIA_ATTR, ATTR_BOOL } from '../../attributes';
+import { validateInput } from '../../validation';
+
 export function invalidInputs(form) {
   return Array.from(form.elements).filter((element) => {
     if (element.tagName.match(/INPUT|SELECT|TEXTAREA|\\./g)) {
@@ -38,4 +41,19 @@ export function toggleButtonState(button) {
   return {
     toggleState,
   };
+}
+
+function submitMethod(e) {
+  e.preventDefault();
+  const form = e.target;
+  if (form.dataset.formstate == FORM_STATE.SUBMITTING) return;
+  form.dataset.formstate = FORM_STATE.SUBMITTING;
+  const buttonState = cForm.toggleButtonState(e.nativeEvent.submitter);
+  buttonState.toggleState();
+  setInputErrors(errors(invalidInputs(form)));
+  if (form.checkValidity()) {
+    setFormData(formDataAsObj(new FormData(form)));
+  }
+  delete form.dataset.formstate;
+  buttonState.toggleState();
 }

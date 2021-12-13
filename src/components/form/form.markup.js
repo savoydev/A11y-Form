@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { validateInput } from '../../validation';
-import { ARIA_ATTR, ATTR_BOOL, FORM_STATE } from '../../attributes';
+import { FORM_STATE } from '../../attributes';
 import { FormErrorSummary, FieldSet } from '../.';
-import * as Form from './form.class.js';
+import * as cForm from './form.class.js';
 import { formPropTypes } from './form.proptypes';
 
 const Form = ({ children, name, showValidationOn }) => {
@@ -18,9 +17,9 @@ const Form = ({ children, name, showValidationOn }) => {
     const form = e.target;
     if (form.dataset.formstate == FORM_STATE.SUBMITTING) return;
     form.dataset.formstate = FORM_STATE.SUBMITTING;
-    const buttonState = toggleButtonState(e.nativeEvent.submitter);
+    const buttonState = cForm.toggleButtonState(e.nativeEvent.submitter);
     buttonState.toggleState();
-    setInputErrors(errors(invalidInputs(form)));
+    setInputErrors(cForm.errors(cForm.invalidInputs(form)));
     if (form.checkValidity()) {
       setFormData(formDataAsObj(new FormData(form)));
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import Form from './components/form/form';
+import Form from './components/form/';
 import InputGroup from './components/input/group/input-group';
 import FieldSet from './components/fieldset/fieldset';
 import Button from './components/button/button';
