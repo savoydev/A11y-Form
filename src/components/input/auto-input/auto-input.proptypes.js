@@ -1,6 +1,6 @@
 import { string, bool, oneOf, shape, node } from 'prop-types';
 import { EVENT_TYPES } from '../../../attributes';
-import { constraintValidationType } from '../../../types/index';
+import { constraintValidationTypes } from '../base/base-input.proptypes';
 
 export const autoInputPropTypes = {
   id: string.isRequired,
@@ -28,5 +28,5 @@ export const autoInputPropTypes = {
   labelText: string,
   required: bool,
   showValidationOn: oneOf(Object.values(EVENT_TYPES)),
-  validation: constraintValidationType,
+  validation: constraintValidationTypes,
 };

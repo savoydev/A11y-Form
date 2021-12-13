@@ -12,7 +12,7 @@ import {
 
 export default function App() {
   return (
-    <Form name="testing">
+    <Form name="SignUp">
       <Form.FieldSet name="Identity" legend="Identity">
         <span></span>
         <InputGroup inputId="Nickname">
@@ -30,11 +30,10 @@ export default function App() {
             labelId="NicknameLabel"
             placeholder="Nickname"
             type="text"
-            showValidationOn={EVENT_TYPES.INPUT}
+            showValidationOn={EVENT_TYPES.BLUR}
             validation={{
               minlength: {
                 value: 5,
-                message: 'This needs more characters!',
               },
               // maxlength: {
               //   value: 10,

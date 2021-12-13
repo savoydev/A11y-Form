@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from 'react';
 import {
   validateInput,
   setInvalid,
-  isDisabled,
-  parseValidationObject,
+  parseConstraints,
 } from '../../../validation';
+import { isDisabled } from '../../../extended-element';
 import { EVENT_TYPES } from '../../../attributes';
 import {
   baseInputPropTypes,
@@ -27,9 +27,10 @@ const BaseInput = ({
   type,
   validation,
 }) => {
-  const [constraints, validationMessages] = parseValidationObject(
-    validation
-  ) ?? [null, null];
+  const [constraints, validationMessages] = parseConstraints(validation) ?? [
+    null,
+    null,
+  ];
 
   const textInput = useRef(null);
   useEffect(() => {

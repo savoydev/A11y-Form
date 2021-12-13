@@ -1,17 +1,17 @@
-import { string, bool, oneOf, shape, number } from 'prop-types';
+import { string, bool, oneOf, number, exact } from 'prop-types';
 import { EVENT_TYPES, INPUT_TYPES, AUTOCOMPLETE } from '../../../attributes';
 
-const numberConstraint = shape({
+const numberConstraint = exact({
   value: number.isRequired,
   message: string,
 });
 
-const boolConstraint = shape({
+const boolConstraint = exact({
   value: bool.isRequired,
   message: string,
 });
 
-export const constraintValidationType = shape({
+export const constraintValidationTypes = exact({
   minlength: numberConstraint,
   maxlength: numberConstraint,
   required: boolConstraint,
@@ -31,7 +31,7 @@ export const baseInputPropTypes = {
   showValidationOn: oneOf(Object.values(EVENT_TYPES)),
   spellCheck: bool,
   type: oneOf(Object.values(INPUT_TYPES)),
-  validation: constraintValidationType,
+  validation: constraintValidationTypes,
 };
 
 export const baseInputDefaultProps = {
