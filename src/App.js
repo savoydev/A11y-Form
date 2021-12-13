@@ -74,8 +74,8 @@ export default function App() {
             maxLength="10"
             errorMessageId="FirstNameErrorMsg"
           />
-        </InputGroup>
-        <AutoInput id="LastName" labelText="Your Last Name" /> */}
+      </InputGroup> */}
+        <AutoInput id="LastName" labelText="Your Last Name" />
       </Form.FieldSet>
       <Form.Submit>
         <Button>Submit</Button>
