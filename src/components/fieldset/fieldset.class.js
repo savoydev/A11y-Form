@@ -1,6 +1,7 @@
+import React from 'react'
 import Legend from './fieldset.legend.markup.js'
 
-export const fieldSetHasLegend = (children) => {
+const fieldSetHasLegend = (children) => {
   let fieldSetHasLegend = false;
   Array.from(children).forEach((child) => {
     if (child.type === Legend) {
@@ -8,4 +9,8 @@ export const fieldSetHasLegend = (children) => {
     }
   });
   return fieldSetHasLegend;
+};
+
+export const renderLegend = (children, legendText) => {
+  return fieldSetHasLegend(children) ? null : <Legend>{legendText}</Legend>
 };
