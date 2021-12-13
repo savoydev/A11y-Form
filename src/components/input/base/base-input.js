@@ -6,7 +6,10 @@ import {
   EVENT_TYPES,
   parseValidationObject,
 } from '../../../validation';
-import { baseInputPropTypes, baseInputDefaultProps } from './proptypes';
+import {
+  baseInputPropTypes,
+  baseInputDefaultProps,
+} from './base-input.proptypes';
 
 const Input = ({
   autoComplete,

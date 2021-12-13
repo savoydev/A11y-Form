@@ -1,5 +1,5 @@
 import React from 'react';
-import { inputDescriptionPropTypes } from './proptypes';
+import { inputDescriptionPropTypes } from './input-description.proptypes';
 
 const InputDescription = ({ children, id }) => {
   return (

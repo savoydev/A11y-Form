@@ -3,7 +3,7 @@ import InputLabel from '../label/input-label';
 import InputDescription from '../description/input-description';
 import InputError from '../error/input-error';
 import BaseInput from '../base/base-input.js';
-import {inputGroupPropTypes} from './proptypes'
+import { inputGroupPropTypes } from './input-group.proptypes';
 
 const InputGroup = ({ children, invalid, inputId, required, disabled }) => {
   return (
@@ -24,5 +24,5 @@ InputGroup.Description = InputDescription;
 InputGroup.Error = InputError;
 InputGroup.Input = BaseInput;
 
-InputGroup.propTypes = inputGroupPropTypes
+InputGroup.propTypes = inputGroupPropTypes;
 export default InputGroup;
