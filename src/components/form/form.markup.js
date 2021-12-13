@@ -1,51 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { validateInput } from '../../validation';
 import { ARIA_ATTR, ATTR_BOOL, FORM_STATE } from '../../attributes';
-import FormErrorSummary from '../form-error-summary/form-error-summary';
-import FieldSet from '../fieldset/fieldset';
+import { FormErrorSummary, FieldSet } from '../.';
+import * as Form from './form.class.js';
 import { formPropTypes } from './form.proptypes';
-
-function invalidInputs(form) {
-  return Array.from(form.elements).filter((element) => {
-    if (element.tagName.match(/INPUT|SELECT|TEXTAREA|\\./g)) {
-      validateInput(element);
-      element.checkValidity();
-      if (!element.validity.valid) {
-        return element;
-      }
-    }
-  });
-}
-
-function formDataAsObj(formData) {
-  return Object.fromEntries(formData.entries());
-}
-
-function errors(inputElements) {
-  return inputElements.map(({ id, validationMessage }) => {
-    return {
-      id,
-      validationMessage,
-    };
-  });
-}
-
-function toggleButtonState(button) {
-  const buttonText = button.innerHTML;
-  const submittingText = 'Submitting';
-  const toggleState = () => {
-    if (button.form.dataset.formstate == FORM_STATE.SUBMITTING) {
-      button.innerHTML = submittingText;
-      button.setAttribute(ARIA_ATTR.DISABLED, ATTR_BOOL.TRUE);
-    } else {
-      button.innerHTML = buttonText;
-      button.removeAttribute(ARIA_ATTR.DISABLED);
-    }
-  };
-  return {
-    toggleState,
-  };
-}
 
 const Form = ({ children, name, showValidationOn }) => {
   let [inputErrors, setInputErrors] = useState([]);
