@@ -5,7 +5,7 @@ import InputGroup from './components/input/group/input-group';
 import FieldSet from './components/fieldset/fieldset';
 import Button from './components/button/button';
 import AutoInput from './components/input/auto-input/auto-input';
-import { EVENT_TYPES } from './validation.js';
+import { EVENT_TYPES } from './attributes';
 
 export default function App() {
   return (

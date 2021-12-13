@@ -1,6 +1,6 @@
 import React from 'react';
 import InputGroup from '../group/input-group';
-import { AUTO_SUFFIX } from '../../../validation';
+import { AUTO_SUFFIX } from '../../../attributes';
 import { autoInputPropTypes } from './auto-input.proptypes';
 
 let group = {

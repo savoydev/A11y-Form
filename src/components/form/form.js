@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {
-  validateInput,
-  ARIA_ATTR,
-  ATTR_BOOL,
-  FORM_STATE,
-} from '../../validation';
+import { validateInput } from '../../validation';
+import { ARIA_ATTR, ATTR_BOOL, FORM_STATE } from '../../attributes';
 import FormErrorSummary from '../form-error-summary/form-error-summary';
 import FieldSet from '../fieldset/fieldset';
 import { formPropTypes } from './form.proptypes';

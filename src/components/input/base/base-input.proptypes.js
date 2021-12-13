@@ -1,5 +1,5 @@
 import { string, bool, oneOf } from 'prop-types';
-import { EVENT_TYPES, INPUT_TYPES, ATTR_BOOL } from '../../../validation';
+import { EVENT_TYPES, INPUT_TYPES, ATTR_BOOL } from '../../../attributes';
 import { constraintValidationType } from '../../../types/index';
 
 export const baseInputPropTypes = {
