@@ -1,7 +1,13 @@
 import React from 'react';
 import './style.css';
 import { EVENT_TYPES } from './attributes';
-import { AutoInput, InputGroup, Form, FieldSet, Button } from './components/';
+import {
+  AutoInput,
+  InputGroup,
+  Form,
+  FieldSet,
+  Button,
+} from './components/index.js';
 
 export default function App() {
   return (

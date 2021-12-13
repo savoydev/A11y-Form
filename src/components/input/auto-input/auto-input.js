@@ -1,5 +1,5 @@
 import React from 'react';
-import InputGroup from '../group/input-group';
+import { InputGroup } from '../';
 import { AUTO_SUFFIX } from '../../../attributes';
 import { autoInputPropTypes } from './auto-input.proptypes';
 

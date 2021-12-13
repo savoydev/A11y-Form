@@ -1,10 +1,10 @@
 import Button from './button/button';
-import FieldSet from './fieldset/';
-import Form from './form/';
+import FieldSet from './fieldset/index.js';
+import Form from './form/index.js';
 import FormErrorSummary from './form-error-summary/form-error-summary';
 import {
   AutoInput,
-  Input,
+  BaseInput,
   Description,
   ValidationMessage,
   InputGroup,
@@ -17,7 +17,7 @@ export {
   Form,
   FormErrorSummary,
   AutoInput,
-  Input,
+  BaseInput,
   Description,
   ValidationMessage,
   InputGroup,
