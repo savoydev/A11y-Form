@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  InputDescription,
-  InputError,
-  InputLabel,
-  BaseInput,
-} from '../index.js';
+import { InputDescription, InputError, BaseInput } from '../index.js';
+import InputLabel from '../label/input-label';
 import { inputGroupPropTypes } from './input-group.proptypes';
 
 const InputGroup = ({ children, invalid, inputId, required, disabled }) => {

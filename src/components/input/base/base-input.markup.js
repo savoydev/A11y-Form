@@ -3,9 +3,9 @@ import {
   validateInput,
   setInvalid,
   isDisabled,
-  EVENT_TYPES,
   parseValidationObject,
 } from '../../../validation';
+import { EVENT_TYPES } from '../../../attributes';
 import {
   baseInputPropTypes,
   baseInputDefaultProps,

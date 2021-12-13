@@ -16,9 +16,9 @@ export default function App() {
       <Form.FieldSet name="Identity" legend="Identity">
         <span></span>
         <InputGroup inputId="Nickname">
-          {/* <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
+          <InputGroup.Label id="NicknameLabel" htmlFor="Nickname">
             Nickname
-          </InputGroup.Label> */}
+          </InputGroup.Label>
           <InputGroup.Description id="NicknameDescribedBy">
             A nickname could be something your friends call you
           </InputGroup.Description>

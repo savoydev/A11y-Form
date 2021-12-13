@@ -3,7 +3,7 @@ import BaseInput from './base/index.js';
 import InputDescription from './description/input-description';
 import InputError from './error/input-error.js';
 import InputGroup from './group/index.js';
-import InputLabel from './label/input-label';
+import InputLabel from './label/index.js';
 
 export {
   AutoInput,

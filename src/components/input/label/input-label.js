@@ -1,5 +1,8 @@
 import React from 'react';
-import {inputLabelPropTypes, inputLabelDefaultProps} from './input-label.proptypes.js'
+import {
+  inputLabelPropTypes,
+  inputLabelDefaultProps,
+} from './input-label.proptypes';
 
 const InputLabel = ({ id, disabled, children, htmlFor }) => {
   return (

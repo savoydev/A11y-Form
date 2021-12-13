@@ -21,7 +21,7 @@ const Form = ({ children, name, showValidationOn }) => {
     buttonState.toggleState();
     setInputErrors(cForm.errors(cForm.invalidInputs(form)));
     if (form.checkValidity()) {
-      setFormData(formDataAsObj(new FormData(form)));
+      setFormData(cForm.formDataAsObj(new FormData(form)));
     }
     delete form.dataset.formstate;
     buttonState.toggleState();
