@@ -1,7 +1,7 @@
 import React from 'react';
 import InputGroup from '../group/input-group';
 import { AUTO_SUFFIX } from '../../../validation';
-import {autoInputPropTypes} from './proptypes'
+import { autoInputPropTypes } from './auto-input.proptypes';
 
 let group = {
   invalid: '',
@@ -92,7 +92,7 @@ const AutoInput = ({
   };
 
   const buildDescriptionId = () => {
-    return description?.id ?? computedDescriptionId
+    return description?.id ?? computedDescriptionId;
   };
 
   const descriptionId = buildDescriptionId();

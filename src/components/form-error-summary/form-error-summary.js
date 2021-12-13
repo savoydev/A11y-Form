@@ -2,7 +2,7 @@ import React from 'react';
 import {
   formErrorSummaryPropTypes,
   formErrorSummaryDefaultProps,
-} from './proptypes';
+} from './form-error-summary.proptypes';
 
 const FormErrorSummary = ({ errors }) => {
   return errors.length > 0 ? (

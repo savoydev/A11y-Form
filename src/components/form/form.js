@@ -6,8 +6,8 @@ import {
   FORM_STATE,
 } from '../../validation';
 import FormErrorSummary from '../form-error-summary/form-error-summary';
-import FieldSet from '../fieldset/fieldset'
-import {formPropTypes} from './proptypes'
+import FieldSet from '../fieldset/fieldset';
+import { formPropTypes } from './form.proptypes';
 
 function invalidInputs(form) {
   return Array.from(form.elements).filter((element) => {
