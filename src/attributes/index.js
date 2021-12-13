@@ -8,4 +8,5 @@ export {
   EVENT_TYPES,
   INPUT_TYPES,
   ATTR_BOOL,
+  AUTOCOMPLETE,
 } from './constants';

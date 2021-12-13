@@ -4,6 +4,22 @@ export const AUTO_SUFFIX = {
   DESCRIPTION: 'DescribedBy',
 };
 
+export const AUTOCOMPLETE = {
+  ON: 'on',
+  OFF: 'off',
+  NAME: 'name',
+  HONORIFICPREFIX: 'honorific-prefix',
+  GIVENAME: 'given-name',
+  ADDITIONALNAME: 'additional-name',
+  FAMILYNAME: 'family-name',
+  NICKNAME: 'nickname',
+  HONORIFICSUFFIX: 'honorific-suffix',
+  USERNAME: 'username',
+  NEWPASSWORD: 'new-password',
+  CURRENTPASSWORD: 'current-password',
+  ONETIMECODE: 'one-time-code',
+};
+
 export const ARIA_ATTR = {
   INVALID: 'aria-invalid',
   DESCRIBEDBY: 'aria-describedby',

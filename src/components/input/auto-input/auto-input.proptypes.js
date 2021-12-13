@@ -27,10 +27,6 @@ export const autoInputPropTypes = {
   }),
   labelText: string,
   required: bool,
-  showValidationOn: oneOf([
-    EVENT_TYPES.SUBMIT,
-    EVENT_TYPES.BLUR,
-    EVENT_TYPES.INPUT,
-  ]),
+  showValidationOn: oneOf(Object.values(EVENT_TYPES)),
   validation: constraintValidationType,
 };

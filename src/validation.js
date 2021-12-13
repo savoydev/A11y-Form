@@ -58,21 +58,7 @@ const dataTypes = {
 
 
 
-const autoComplete = {
-  on: 'on',
-  off: 'off',
-  name: 'name',
-  honorificPrefix: 'honorific-prefix',
-  givenName: 'given-name',
-  additionalName: 'additional-name',
-  familyName: 'family-name',
-  nickName: 'nickname',
-  honorifixSuffix: 'honorific-suffix',
-  username: 'username',
-  newPassword: 'new-password',
-  currentPassword: 'current-password',
-  oneTimeCode: 'one-time-code',
-};
+
 
 export function parseValidationObject(validation) {
   if (validation == null) return;
