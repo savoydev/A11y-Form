@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputGroup } from '../';
-import { AUTO_SUFFIX } from '../../../attributes';
 import { autoInputPropTypes } from './auto-input.proptypes';
+import { autoInputDescision } from './auto-input.class';
 
 let group = {
   invalid: '',
@@ -58,71 +58,32 @@ const AutoInput = ({
   validation,
   showValidationOn,
 }) => {
-  const inputId = input?.id ?? id;
-  const computedLabelId = `${inputId}${AUTO_SUFFIX.LABEL}`;
-  const computedErrorMsgId = `${inputId}${AUTO_SUFFIX.ERROR_MSG}`;
-  const computedDescriptionId = `${inputId}${AUTO_SUFFIX.DESCRIPTION}`;
-
-  const buildLabelId = () => {
-    return label?.id ?? computedLabelId;
-  };
-
-  const buildLabelFor = () => {
-    return label?.for ?? inputId;
-  };
-
-  const buildLabelText = () => {
-    return label?.text ?? labelText;
-  };
-
-  const buildErrorMessageId = () => {
-    return error?.id ?? computedErrorMsgId;
-  };
-
-  const buildGroupId = () => {
-    return group?.inputId ?? inputId;
-  };
-
-  const buildInputRequired = () => {
-    return input?.required ?? required;
-  };
-
-  const buildInputName = () => {
-    return input?.name ?? inputId;
-  };
-
-  const buildDescriptionId = () => {
-    return description?.id ?? computedDescriptionId;
-  };
-
-  const descriptionId = buildDescriptionId();
-  const errorMessageId = buildErrorMessageId();
-  const groupId = buildGroupId();
-  const inputName = buildInputName();
-  const inputRequired = buildInputRequired();
-  const labelId = buildLabelId();
-  const labelFor = buildLabelFor();
-  const labelTextValue = buildLabelText();
+  const autoObj = autoInputDescision(input, id);
+  autoObj.label(label, labelText);
+  autoObj.errorMessageId(error);
+  autoObj.groupId(group);
+  autoObj.required(required);
+  autoObj.descriptionId(description);
 
   return (
-    <InputGroup required={inputRequired} inputId={groupId}>
-      <InputGroup.Label id={labelId} htmlFor={labelFor}>
-        {labelTextValue}
+    <InputGroup required={autoObj.required} inputId={autoObj.inputId}>
+      <InputGroup.Label id={autoObj.labelId} htmlFor={autoObj.labelFor}>
+        {autoObj.labelText}
       </InputGroup.Label>
       {description && (
-        <InputGroup.Description id={descriptionId}>
+        <InputGroup.Description id={autoObj.descriptionId}>
           {description.text}
           {description.children}
         </InputGroup.Description>
       )}
-      <InputGroup.Error id={errorMessageId} />
+      <InputGroup.Error id={autoObj.errorMessageId} />
       <InputGroup.Input
-        descriptionId={descriptionId}
-        errorMessageId={errorMessageId}
-        id={inputId}
-        labelId={labelId}
-        name={inputName}
-        required={inputRequired}
+        descriptionId={autoObj.descriptionId}
+        errorMessageId={autoObj.errorMessageId}
+        id={autoObj.inputId}
+        labelId={autoObj.labelId}
+        name={autoObj.name}
+        required={autoObj.required}
         showValidationOn={showValidationOn}
         validation={validation}
       />

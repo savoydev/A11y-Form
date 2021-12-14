@@ -75,7 +75,14 @@ export default function App() {
             errorMessageId="FirstNameErrorMsg"
           />
       </InputGroup> */}
-        <AutoInput id="LastName" labelText="Your Last Name" />
+        <AutoInput
+          id="LastName"
+          description={{
+            text: 'Comes after first name',
+          }}
+          required={true}
+          labelText="Your Last Name"
+        />
       </Form.FieldSet>
       <Form.Submit>
         <Button>Submit</Button>
