@@ -1,5 +1,5 @@
 import AutoInput from './auto-input/';
-import BaseInput from './base/base-input.markup';
+import BaseInput from './base/';
 import InputDescription from './description/';
 import InputError from './error/';
 import InputGroup from './group/';
