@@ -21,20 +21,119 @@ const validate = {
   money: '',
 };
 
-const datatype = {
-  date: '',
-  email: '',
-  telephone: '',
-  text: '',
-  alphanumeric: '',
-  alphaonly: '',
-  wholenumber: '',
-  decimal: '',
-  money: '',
-  dateday: '',
-  datemonth: '',
-  dateyear: '',
+const inputType = {
+  button: 'button',
+  checkbox: 'checkbox',
+  color: 'color',
+  date: 'date',
+  datetimeLocal: 'datetime-local',
+  email: 'email',
+  file: 'file',
+  hidden: 'hidden',
+  image: 'image',
+  month: 'month',
+  number: 'number',
+  password: 'password',
+  radio: 'radio',
+  range: 'range',
+  reset: 'reset',
+  search: 'search',
+  submit: 'submit',
+  tel: 'tel',
+  text: 'text',
+  time: 'time',
+  url: 'url',
+  week: 'week',
+};
+
+const dateTypeAttributes = {
+  value: '',
+  max: '',
+  min: '',
+  step: '',
+};
+
+const emailTypeAttributes = {
+  value: '',
+  list: '',
+  maxlength: '',
+  minlength: '',
+  multiple: '',
   pattern: '',
+  placeholder: '',
+  readonly: '',
+  size: '',
+};
+
+const monthTypeAttributes = {
+  value: '',
+  list: '',
+  max: '',
+  min: '',
+  readonly: '',
+  step: '',
+};
+
+const numberTypeAttributes = {
+  value: '',
+  list: '',
+  max: '',
+  min: '',
+  placeholder: '',
+  readonly: '',
+  step: '',
+};
+
+const checkboxTypeAttributes = {
+  value: '',
+  name: '',
+  checked: '',
+};
+const searchTypeAttributes = {
+  value: '',
+  list: '',
+  maxlength: '',
+  minlength: '',
+  pattern: '',
+  placeholder: '',
+  readonly: '',
+  spellcheck: '',
+  name: '',
+};
+
+const telTypeAttributes = {
+  value: '',
+  list: '',
+  maxlength: '',
+  minlength: '',
+  pattern: '',
+  placeholder: '',
+  readonly: '',
+  size: '',
+};
+
+const textTypeAttributes = {
+  value: '',
+  list: '',
+  maxlength: '',
+  minlength: '',
+  pattern: '',
+  placeholder: '',
+  readonly: '',
+  size: '',
+  spellcheck: '',
+};
+
+const globalInputAttributes = {
+  accept: '',
+  alt: '',
+  automcomplete: '',
+  autofocus: '',
+  capture: '',
+  checked: '',
+  dirname: '',
+  disabled: '',
+  form: '',
 };
 
 const dataTypes = {
