@@ -1,10 +1,4 @@
-import {
-  VALIDATION_ATTR,
-  ARIA_ATTR,
-  ATTR_BOOL,
-  DATA_ATTR,
-  TAG_NAME,
-} from './attributes';
+import { ARIA_ATTR, ATTR_BOOL, DATA_ATTR, TAG_NAME } from './attributes';
 
 export function extend(element) {
   const disabled = isDisabled(element);
