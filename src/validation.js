@@ -19,6 +19,7 @@ const validate = {
   wholenumber: '',
   decimal: '',
   money: '',
+  pattern: '',
 };
 
 const inputType = {
@@ -125,15 +126,16 @@ const textTypeAttributes = {
 };
 
 const globalInputAttributes = {
-  accept: '',
-  alt: '',
   automcomplete: '',
   autofocus: '',
-  capture: '',
-  checked: '',
-  dirname: '',
   disabled: '',
   form: '',
+  id: '',
+  inputmode: '',
+  name: '',
+  title: '',
+  type: '',
+  value: '',
 };
 
 const dataTypes = {
